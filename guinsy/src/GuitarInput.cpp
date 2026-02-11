@@ -3,7 +3,11 @@
 #include <Wire.h>
 #include "GuitarInput.h"
 
-GuitarInput::GuitarInput() { }
+GuitarInput::GuitarInput() {
+    for (int i = 0; i < 6; i++) {
+        data[i] = 0xFF;
+    }
+}
 
 void GuitarInput::begin() {
     Wire.begin();
@@ -20,6 +24,10 @@ void GuitarInput::begin() {
     Wire.write(0xFB);
     Wire.write(0x00);
     Wire.endTransmission();
+
+    delay(100);
+
+    this->update();
 
     Serial.println("Wii Guitar Initialized");
 }
@@ -42,7 +50,8 @@ void GuitarInput::update() {
     delay(10);
 
     // 2. Request 6 bytes from the guitar
-    Wire.requestFrom(WII_ADDRESS, 6);
+    byte count = Wire.requestFrom(WII_ADDRESS, 6);
+    if (count != 6) return;
 
     int i = 0;
     while (Wire.available() && i < 6) {

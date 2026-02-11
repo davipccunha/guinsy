@@ -14,6 +14,8 @@ void setup() {
   Serial.begin(9600);
   initializeAudio();
   guitarInput.begin();
+
+  delay(10);
 }
 
 void loop() {
@@ -31,8 +33,7 @@ void initializeAudio() {
   audioShield.volume(0.25);
 }
  
-bool strumFlag = false;
-
+bool strumFlag = false; // This avoids the strum bar to be continuously pressed
 int currentOctave = 0; // This is not an absolute octave but rather a relative octave shift that will be applied to the final strings frequency
 
 void play() {
@@ -155,8 +156,8 @@ void handleOctaveUp() {
 
   if (guitarInput.getPlus() && !plusFlag) {
     plusFlag = true;
-    currentOctave++;
-    Serial.printf("%d\n", currentOctave);
+    currentOctave = min(currentOctave + 1, 4); // For some reason, a higher octave then 4 does not change anything on the headphones
+    Serial.printf("Current octave: %d\n", currentOctave);
   }
 }
 
@@ -177,7 +178,7 @@ void handleOctaveDown() {
   if (guitarInput.getMinus() && !minusFlag) {
     minusFlag = true;
     currentOctave = max(0, currentOctave - 1);
-    Serial.printf("%d\n", currentOctave);
+    Serial.printf("Current octave: %d\n", currentOctave);
   }
 }
 
