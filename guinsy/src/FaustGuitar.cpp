@@ -10343,107 +10343,103 @@ struct mydsp : public dsp {
 	float fConst1;
 	float fConst2;
 	FAUSTFLOAT fVslider0;
-	float fRec1[2];
-	float fRec0[2];
+	float fRec10[2];
+	float fConst3;
 	FAUSTFLOAT fVslider1;
 	float fRec12[2];
-	float fConst3;
+	int iRec14[2];
 	FAUSTFLOAT fVslider2;
-	float fRec14[2];
-	int iRec16[2];
-	FAUSTFLOAT fVslider3;
-	float fRec18[2];
+	float fRec16[2];
 	float fConst4;
 	FAUSTFLOAT fButton0;
 	float fVec0[2];
-	float fRec17[2];
-	FAUSTFLOAT fVslider4;
+	float fRec15[2];
+	FAUSTFLOAT fVslider3;
 	int IOTA0;
 	float fVec1[8192];
-	float fRec15[3];
-	FAUSTFLOAT fVslider5;
-	float fRec21[2];
+	float fRec13[3];
+	FAUSTFLOAT fVslider4;
+	float fRec19[2];
 	FAUSTFLOAT fButton1;
 	float fVec2[2];
-	float fRec20[2];
+	float fRec18[2];
 	float fVec3[8192];
-	float fRec19[3];
-	FAUSTFLOAT fVslider6;
-	float fRec24[2];
+	float fRec17[3];
+	FAUSTFLOAT fVslider5;
+	float fRec22[2];
 	FAUSTFLOAT fButton2;
 	float fVec4[2];
-	float fRec23[2];
+	float fRec21[2];
 	float fVec5[8192];
-	float fRec22[3];
-	FAUSTFLOAT fVslider7;
-	float fRec27[2];
+	float fRec20[3];
+	FAUSTFLOAT fVslider6;
+	float fRec25[2];
 	FAUSTFLOAT fButton3;
 	float fVec6[2];
-	float fRec26[2];
+	float fRec24[2];
 	float fVec7[8192];
-	float fRec25[3];
-	FAUSTFLOAT fVslider8;
-	float fRec30[2];
+	float fRec23[3];
+	FAUSTFLOAT fVslider7;
+	float fRec28[2];
 	FAUSTFLOAT fButton4;
 	float fVec8[2];
-	float fRec29[2];
+	float fRec27[2];
 	float fVec9[8192];
-	float fRec28[3];
-	float fRec13[3];
+	float fRec26[3];
+	float fRec11[3];
 	float fVec10[2];
 	float fConst5;
 	float fConst6;
 	float fConst7;
-	float fRec11[2];
-	FAUSTFLOAT fVslider9;
-	float fRec31[2];
-	float fRec32[2];
+	float fRec9[2];
+	FAUSTFLOAT fVslider8;
+	float fRec29[2];
+	float fRec30[2];
 	float fVec11[8192];
 	int iConst8;
-	float fRec10[2];
-	float fRec34[2];
+	float fRec8[2];
+	float fRec32[2];
 	float fVec12[8192];
 	int iConst9;
-	float fRec33[2];
-	float fRec36[2];
+	float fRec31[2];
+	float fRec34[2];
 	float fVec13[8192];
 	int iConst10;
-	float fRec35[2];
-	float fRec38[2];
+	float fRec33[2];
+	float fRec36[2];
 	float fVec14[8192];
 	int iConst11;
-	float fRec37[2];
-	float fRec40[2];
+	float fRec35[2];
+	float fRec38[2];
 	float fVec15[8192];
 	int iConst12;
-	float fRec39[2];
-	float fRec42[2];
+	float fRec37[2];
+	float fRec40[2];
 	float fVec16[8192];
 	int iConst13;
-	float fRec41[2];
-	float fRec44[2];
+	float fRec39[2];
+	float fRec42[2];
 	float fVec17[8192];
 	int iConst14;
-	float fRec43[2];
-	float fRec46[2];
+	float fRec41[2];
+	float fRec44[2];
 	float fVec18[8192];
 	int iConst15;
-	float fRec45[2];
+	float fRec43[2];
 	float fVec19[2048];
 	int iConst16;
-	float fRec8[2];
+	float fRec6[2];
 	float fVec20[2048];
 	int iConst17;
-	float fRec6[2];
+	float fRec4[2];
 	float fVec21[2048];
 	int iConst18;
-	float fRec4[2];
+	float fRec2[2];
 	float fVec22[1024];
 	int iConst19;
-	float fRec2[2];
-	float fVec23[131072];
-	FAUSTFLOAT fVslider10;
-	float fRec47[2];
+	float fRec0[2];
+	FAUSTFLOAT fVslider9;
+	float fRec45[2];
 	
 	mydsp() {
 	}
@@ -10479,8 +10475,6 @@ struct mydsp : public dsp {
 		m->declare("maths.lib/license", "LGPL with exception");
 		m->declare("maths.lib/name", "Faust Math Library");
 		m->declare("maths.lib/version", "2.9.0");
-		m->declare("misceffects.lib/name", "Misc Effects Library");
-		m->declare("misceffects.lib/version", "2.5.1");
 		m->declare("name", "FaustGuitar");
 		m->declare("noises.lib/name", "Faust Noise Generator Library");
 		m->declare("noises.lib/version", "1.5.0");
@@ -10511,229 +10505,219 @@ struct mydsp : public dsp {
 	}
 	
 	virtual void instanceResetUserInterface() {
-		fVslider0 = static_cast<FAUSTFLOAT>(0.0f);
-		fVslider1 = static_cast<FAUSTFLOAT>(0.5f);
-		fVslider2 = static_cast<FAUSTFLOAT>(0.3f);
-		fVslider3 = static_cast<FAUSTFLOAT>(246.94f);
+		fVslider0 = static_cast<FAUSTFLOAT>(0.5f);
+		fVslider1 = static_cast<FAUSTFLOAT>(0.3f);
+		fVslider2 = static_cast<FAUSTFLOAT>(246.94f);
 		fButton0 = static_cast<FAUSTFLOAT>(0.0f);
-		fVslider4 = static_cast<FAUSTFLOAT>(0.5f);
-		fVslider5 = static_cast<FAUSTFLOAT>(196.0f);
+		fVslider3 = static_cast<FAUSTFLOAT>(0.5f);
+		fVslider4 = static_cast<FAUSTFLOAT>(196.0f);
 		fButton1 = static_cast<FAUSTFLOAT>(0.0f);
-		fVslider6 = static_cast<FAUSTFLOAT>(146.83f);
+		fVslider5 = static_cast<FAUSTFLOAT>(146.83f);
 		fButton2 = static_cast<FAUSTFLOAT>(0.0f);
-		fVslider7 = static_cast<FAUSTFLOAT>(1.1e+02f);
+		fVslider6 = static_cast<FAUSTFLOAT>(1.1e+02f);
 		fButton3 = static_cast<FAUSTFLOAT>(0.0f);
-		fVslider8 = static_cast<FAUSTFLOAT>(82.41f);
+		fVslider7 = static_cast<FAUSTFLOAT>(82.41f);
 		fButton4 = static_cast<FAUSTFLOAT>(0.0f);
-		fVslider9 = static_cast<FAUSTFLOAT>(0.15f);
-		fVslider10 = static_cast<FAUSTFLOAT>(-6.0f);
+		fVslider8 = static_cast<FAUSTFLOAT>(0.15f);
+		fVslider9 = static_cast<FAUSTFLOAT>(-6.0f);
 	}
 	
 	virtual void instanceClear() {
 		for (int l0 = 0; l0 < 2; l0 = l0 + 1) {
-			fRec1[l0] = 0.0f;
+			fRec10[l0] = 0.0f;
 		}
 		for (int l1 = 0; l1 < 2; l1 = l1 + 1) {
-			fRec0[l1] = 0.0f;
+			fRec12[l1] = 0.0f;
 		}
 		for (int l2 = 0; l2 < 2; l2 = l2 + 1) {
-			fRec12[l2] = 0.0f;
+			iRec14[l2] = 0;
 		}
 		for (int l3 = 0; l3 < 2; l3 = l3 + 1) {
-			fRec14[l3] = 0.0f;
+			fRec16[l3] = 0.0f;
 		}
 		for (int l4 = 0; l4 < 2; l4 = l4 + 1) {
-			iRec16[l4] = 0;
+			fVec0[l4] = 0.0f;
 		}
 		for (int l5 = 0; l5 < 2; l5 = l5 + 1) {
-			fRec18[l5] = 0.0f;
-		}
-		for (int l6 = 0; l6 < 2; l6 = l6 + 1) {
-			fVec0[l6] = 0.0f;
-		}
-		for (int l7 = 0; l7 < 2; l7 = l7 + 1) {
-			fRec17[l7] = 0.0f;
+			fRec15[l5] = 0.0f;
 		}
 		IOTA0 = 0;
-		for (int l8 = 0; l8 < 8192; l8 = l8 + 1) {
-			fVec1[l8] = 0.0f;
+		for (int l6 = 0; l6 < 8192; l6 = l6 + 1) {
+			fVec1[l6] = 0.0f;
 		}
-		for (int l9 = 0; l9 < 3; l9 = l9 + 1) {
-			fRec15[l9] = 0.0f;
+		for (int l7 = 0; l7 < 3; l7 = l7 + 1) {
+			fRec13[l7] = 0.0f;
+		}
+		for (int l8 = 0; l8 < 2; l8 = l8 + 1) {
+			fRec19[l8] = 0.0f;
+		}
+		for (int l9 = 0; l9 < 2; l9 = l9 + 1) {
+			fVec2[l9] = 0.0f;
 		}
 		for (int l10 = 0; l10 < 2; l10 = l10 + 1) {
-			fRec21[l10] = 0.0f;
+			fRec18[l10] = 0.0f;
 		}
-		for (int l11 = 0; l11 < 2; l11 = l11 + 1) {
-			fVec2[l11] = 0.0f;
+		for (int l11 = 0; l11 < 8192; l11 = l11 + 1) {
+			fVec3[l11] = 0.0f;
 		}
-		for (int l12 = 0; l12 < 2; l12 = l12 + 1) {
-			fRec20[l12] = 0.0f;
+		for (int l12 = 0; l12 < 3; l12 = l12 + 1) {
+			fRec17[l12] = 0.0f;
 		}
-		for (int l13 = 0; l13 < 8192; l13 = l13 + 1) {
-			fVec3[l13] = 0.0f;
+		for (int l13 = 0; l13 < 2; l13 = l13 + 1) {
+			fRec22[l13] = 0.0f;
 		}
-		for (int l14 = 0; l14 < 3; l14 = l14 + 1) {
-			fRec19[l14] = 0.0f;
+		for (int l14 = 0; l14 < 2; l14 = l14 + 1) {
+			fVec4[l14] = 0.0f;
 		}
 		for (int l15 = 0; l15 < 2; l15 = l15 + 1) {
-			fRec24[l15] = 0.0f;
+			fRec21[l15] = 0.0f;
 		}
-		for (int l16 = 0; l16 < 2; l16 = l16 + 1) {
-			fVec4[l16] = 0.0f;
+		for (int l16 = 0; l16 < 8192; l16 = l16 + 1) {
+			fVec5[l16] = 0.0f;
 		}
-		for (int l17 = 0; l17 < 2; l17 = l17 + 1) {
-			fRec23[l17] = 0.0f;
+		for (int l17 = 0; l17 < 3; l17 = l17 + 1) {
+			fRec20[l17] = 0.0f;
 		}
-		for (int l18 = 0; l18 < 8192; l18 = l18 + 1) {
-			fVec5[l18] = 0.0f;
+		for (int l18 = 0; l18 < 2; l18 = l18 + 1) {
+			fRec25[l18] = 0.0f;
 		}
-		for (int l19 = 0; l19 < 3; l19 = l19 + 1) {
-			fRec22[l19] = 0.0f;
+		for (int l19 = 0; l19 < 2; l19 = l19 + 1) {
+			fVec6[l19] = 0.0f;
 		}
 		for (int l20 = 0; l20 < 2; l20 = l20 + 1) {
-			fRec27[l20] = 0.0f;
+			fRec24[l20] = 0.0f;
 		}
-		for (int l21 = 0; l21 < 2; l21 = l21 + 1) {
-			fVec6[l21] = 0.0f;
+		for (int l21 = 0; l21 < 8192; l21 = l21 + 1) {
+			fVec7[l21] = 0.0f;
 		}
-		for (int l22 = 0; l22 < 2; l22 = l22 + 1) {
-			fRec26[l22] = 0.0f;
+		for (int l22 = 0; l22 < 3; l22 = l22 + 1) {
+			fRec23[l22] = 0.0f;
 		}
-		for (int l23 = 0; l23 < 8192; l23 = l23 + 1) {
-			fVec7[l23] = 0.0f;
+		for (int l23 = 0; l23 < 2; l23 = l23 + 1) {
+			fRec28[l23] = 0.0f;
 		}
-		for (int l24 = 0; l24 < 3; l24 = l24 + 1) {
-			fRec25[l24] = 0.0f;
+		for (int l24 = 0; l24 < 2; l24 = l24 + 1) {
+			fVec8[l24] = 0.0f;
 		}
 		for (int l25 = 0; l25 < 2; l25 = l25 + 1) {
-			fRec30[l25] = 0.0f;
+			fRec27[l25] = 0.0f;
 		}
-		for (int l26 = 0; l26 < 2; l26 = l26 + 1) {
-			fVec8[l26] = 0.0f;
+		for (int l26 = 0; l26 < 8192; l26 = l26 + 1) {
+			fVec9[l26] = 0.0f;
 		}
-		for (int l27 = 0; l27 < 2; l27 = l27 + 1) {
-			fRec29[l27] = 0.0f;
+		for (int l27 = 0; l27 < 3; l27 = l27 + 1) {
+			fRec26[l27] = 0.0f;
 		}
-		for (int l28 = 0; l28 < 8192; l28 = l28 + 1) {
-			fVec9[l28] = 0.0f;
+		for (int l28 = 0; l28 < 3; l28 = l28 + 1) {
+			fRec11[l28] = 0.0f;
 		}
-		for (int l29 = 0; l29 < 3; l29 = l29 + 1) {
-			fRec28[l29] = 0.0f;
+		for (int l29 = 0; l29 < 2; l29 = l29 + 1) {
+			fVec10[l29] = 0.0f;
 		}
-		for (int l30 = 0; l30 < 3; l30 = l30 + 1) {
-			fRec13[l30] = 0.0f;
+		for (int l30 = 0; l30 < 2; l30 = l30 + 1) {
+			fRec9[l30] = 0.0f;
 		}
 		for (int l31 = 0; l31 < 2; l31 = l31 + 1) {
-			fVec10[l31] = 0.0f;
+			fRec29[l31] = 0.0f;
 		}
 		for (int l32 = 0; l32 < 2; l32 = l32 + 1) {
-			fRec11[l32] = 0.0f;
+			fRec30[l32] = 0.0f;
 		}
-		for (int l33 = 0; l33 < 2; l33 = l33 + 1) {
-			fRec31[l33] = 0.0f;
+		for (int l33 = 0; l33 < 8192; l33 = l33 + 1) {
+			fVec11[l33] = 0.0f;
 		}
 		for (int l34 = 0; l34 < 2; l34 = l34 + 1) {
-			fRec32[l34] = 0.0f;
+			fRec8[l34] = 0.0f;
 		}
-		for (int l35 = 0; l35 < 8192; l35 = l35 + 1) {
-			fVec11[l35] = 0.0f;
+		for (int l35 = 0; l35 < 2; l35 = l35 + 1) {
+			fRec32[l35] = 0.0f;
 		}
-		for (int l36 = 0; l36 < 2; l36 = l36 + 1) {
-			fRec10[l36] = 0.0f;
+		for (int l36 = 0; l36 < 8192; l36 = l36 + 1) {
+			fVec12[l36] = 0.0f;
 		}
 		for (int l37 = 0; l37 < 2; l37 = l37 + 1) {
-			fRec34[l37] = 0.0f;
+			fRec31[l37] = 0.0f;
 		}
-		for (int l38 = 0; l38 < 8192; l38 = l38 + 1) {
-			fVec12[l38] = 0.0f;
+		for (int l38 = 0; l38 < 2; l38 = l38 + 1) {
+			fRec34[l38] = 0.0f;
 		}
-		for (int l39 = 0; l39 < 2; l39 = l39 + 1) {
-			fRec33[l39] = 0.0f;
+		for (int l39 = 0; l39 < 8192; l39 = l39 + 1) {
+			fVec13[l39] = 0.0f;
 		}
 		for (int l40 = 0; l40 < 2; l40 = l40 + 1) {
-			fRec36[l40] = 0.0f;
+			fRec33[l40] = 0.0f;
 		}
-		for (int l41 = 0; l41 < 8192; l41 = l41 + 1) {
-			fVec13[l41] = 0.0f;
+		for (int l41 = 0; l41 < 2; l41 = l41 + 1) {
+			fRec36[l41] = 0.0f;
 		}
-		for (int l42 = 0; l42 < 2; l42 = l42 + 1) {
-			fRec35[l42] = 0.0f;
+		for (int l42 = 0; l42 < 8192; l42 = l42 + 1) {
+			fVec14[l42] = 0.0f;
 		}
 		for (int l43 = 0; l43 < 2; l43 = l43 + 1) {
-			fRec38[l43] = 0.0f;
+			fRec35[l43] = 0.0f;
 		}
-		for (int l44 = 0; l44 < 8192; l44 = l44 + 1) {
-			fVec14[l44] = 0.0f;
+		for (int l44 = 0; l44 < 2; l44 = l44 + 1) {
+			fRec38[l44] = 0.0f;
 		}
-		for (int l45 = 0; l45 < 2; l45 = l45 + 1) {
-			fRec37[l45] = 0.0f;
+		for (int l45 = 0; l45 < 8192; l45 = l45 + 1) {
+			fVec15[l45] = 0.0f;
 		}
 		for (int l46 = 0; l46 < 2; l46 = l46 + 1) {
-			fRec40[l46] = 0.0f;
+			fRec37[l46] = 0.0f;
 		}
-		for (int l47 = 0; l47 < 8192; l47 = l47 + 1) {
-			fVec15[l47] = 0.0f;
+		for (int l47 = 0; l47 < 2; l47 = l47 + 1) {
+			fRec40[l47] = 0.0f;
 		}
-		for (int l48 = 0; l48 < 2; l48 = l48 + 1) {
-			fRec39[l48] = 0.0f;
+		for (int l48 = 0; l48 < 8192; l48 = l48 + 1) {
+			fVec16[l48] = 0.0f;
 		}
 		for (int l49 = 0; l49 < 2; l49 = l49 + 1) {
-			fRec42[l49] = 0.0f;
+			fRec39[l49] = 0.0f;
 		}
-		for (int l50 = 0; l50 < 8192; l50 = l50 + 1) {
-			fVec16[l50] = 0.0f;
+		for (int l50 = 0; l50 < 2; l50 = l50 + 1) {
+			fRec42[l50] = 0.0f;
 		}
-		for (int l51 = 0; l51 < 2; l51 = l51 + 1) {
-			fRec41[l51] = 0.0f;
+		for (int l51 = 0; l51 < 8192; l51 = l51 + 1) {
+			fVec17[l51] = 0.0f;
 		}
 		for (int l52 = 0; l52 < 2; l52 = l52 + 1) {
-			fRec44[l52] = 0.0f;
+			fRec41[l52] = 0.0f;
 		}
-		for (int l53 = 0; l53 < 8192; l53 = l53 + 1) {
-			fVec17[l53] = 0.0f;
+		for (int l53 = 0; l53 < 2; l53 = l53 + 1) {
+			fRec44[l53] = 0.0f;
 		}
-		for (int l54 = 0; l54 < 2; l54 = l54 + 1) {
-			fRec43[l54] = 0.0f;
+		for (int l54 = 0; l54 < 8192; l54 = l54 + 1) {
+			fVec18[l54] = 0.0f;
 		}
 		for (int l55 = 0; l55 < 2; l55 = l55 + 1) {
-			fRec46[l55] = 0.0f;
+			fRec43[l55] = 0.0f;
 		}
-		for (int l56 = 0; l56 < 8192; l56 = l56 + 1) {
-			fVec18[l56] = 0.0f;
+		for (int l56 = 0; l56 < 2048; l56 = l56 + 1) {
+			fVec19[l56] = 0.0f;
 		}
 		for (int l57 = 0; l57 < 2; l57 = l57 + 1) {
-			fRec45[l57] = 0.0f;
+			fRec6[l57] = 0.0f;
 		}
 		for (int l58 = 0; l58 < 2048; l58 = l58 + 1) {
-			fVec19[l58] = 0.0f;
+			fVec20[l58] = 0.0f;
 		}
 		for (int l59 = 0; l59 < 2; l59 = l59 + 1) {
-			fRec8[l59] = 0.0f;
+			fRec4[l59] = 0.0f;
 		}
 		for (int l60 = 0; l60 < 2048; l60 = l60 + 1) {
-			fVec20[l60] = 0.0f;
+			fVec21[l60] = 0.0f;
 		}
 		for (int l61 = 0; l61 < 2; l61 = l61 + 1) {
-			fRec6[l61] = 0.0f;
+			fRec2[l61] = 0.0f;
 		}
-		for (int l62 = 0; l62 < 2048; l62 = l62 + 1) {
-			fVec21[l62] = 0.0f;
+		for (int l62 = 0; l62 < 1024; l62 = l62 + 1) {
+			fVec22[l62] = 0.0f;
 		}
 		for (int l63 = 0; l63 < 2; l63 = l63 + 1) {
-			fRec4[l63] = 0.0f;
+			fRec0[l63] = 0.0f;
 		}
-		for (int l64 = 0; l64 < 1024; l64 = l64 + 1) {
-			fVec22[l64] = 0.0f;
-		}
-		for (int l65 = 0; l65 < 2; l65 = l65 + 1) {
-			fRec2[l65] = 0.0f;
-		}
-		for (int l66 = 0; l66 < 131072; l66 = l66 + 1) {
-			fVec23[l66] = 0.0f;
-		}
-		for (int l67 = 0; l67 < 2; l67 = l67 + 1) {
-			fRec47[l67] = 0.0f;
+		for (int l64 = 0; l64 < 2; l64 = l64 + 1) {
+			fRec45[l64] = 0.0f;
 		}
 	}
 	
@@ -10759,37 +10743,36 @@ struct mydsp : public dsp {
 	virtual void buildUserInterface(UI* ui_interface) {
 		ui_interface->openHorizontalBox("KISANA_GUITAR");
 		ui_interface->openVerticalBox("Corde_1");
-		ui_interface->addVerticalSlider("frequence", &fVslider8, FAUSTFLOAT(82.41f), FAUSTFLOAT(5.0f), FAUSTFLOAT(8.8e+02f), FAUSTFLOAT(0.1f));
+		ui_interface->addVerticalSlider("frequence", &fVslider7, FAUSTFLOAT(82.41f), FAUSTFLOAT(5.0f), FAUSTFLOAT(8.8e+02f), FAUSTFLOAT(0.1f));
 		ui_interface->addButton("pincer", &fButton4);
 		ui_interface->closeBox();
 		ui_interface->openVerticalBox("Corde_2");
-		ui_interface->addVerticalSlider("frequence", &fVslider7, FAUSTFLOAT(1.1e+02f), FAUSTFLOAT(5.0f), FAUSTFLOAT(8.8e+02f), FAUSTFLOAT(0.1f));
+		ui_interface->addVerticalSlider("frequence", &fVslider6, FAUSTFLOAT(1.1e+02f), FAUSTFLOAT(5.0f), FAUSTFLOAT(8.8e+02f), FAUSTFLOAT(0.1f));
 		ui_interface->addButton("pincer", &fButton3);
 		ui_interface->closeBox();
 		ui_interface->openVerticalBox("Corde_3");
-		ui_interface->addVerticalSlider("frequence", &fVslider6, FAUSTFLOAT(146.83f), FAUSTFLOAT(5.0f), FAUSTFLOAT(8.8e+02f), FAUSTFLOAT(0.1f));
+		ui_interface->addVerticalSlider("frequence", &fVslider5, FAUSTFLOAT(146.83f), FAUSTFLOAT(5.0f), FAUSTFLOAT(8.8e+02f), FAUSTFLOAT(0.1f));
 		ui_interface->addButton("pincer", &fButton2);
 		ui_interface->closeBox();
 		ui_interface->openVerticalBox("Corde_4");
-		ui_interface->addVerticalSlider("frequence", &fVslider5, FAUSTFLOAT(196.0f), FAUSTFLOAT(5.0f), FAUSTFLOAT(8.8e+02f), FAUSTFLOAT(0.1f));
+		ui_interface->addVerticalSlider("frequence", &fVslider4, FAUSTFLOAT(196.0f), FAUSTFLOAT(5.0f), FAUSTFLOAT(8.8e+02f), FAUSTFLOAT(0.1f));
 		ui_interface->addButton("pincer", &fButton1);
 		ui_interface->closeBox();
 		ui_interface->openVerticalBox("Corde_5");
-		ui_interface->addVerticalSlider("frequence", &fVslider3, FAUSTFLOAT(246.94f), FAUSTFLOAT(5.0f), FAUSTFLOAT(8.8e+02f), FAUSTFLOAT(0.1f));
+		ui_interface->addVerticalSlider("frequence", &fVslider2, FAUSTFLOAT(246.94f), FAUSTFLOAT(5.0f), FAUSTFLOAT(8.8e+02f), FAUSTFLOAT(0.1f));
 		ui_interface->addButton("pincer", &fButton0);
 		ui_interface->closeBox();
 		ui_interface->openVerticalBox("GLOBAL");
-		ui_interface->declare(&fVslider2, "style", "knob");
-		ui_interface->addVerticalSlider("disto_drive", &fVslider2, FAUSTFLOAT(0.3f), FAUSTFLOAT(0.0f), FAUSTFLOAT(1.0f), FAUSTFLOAT(0.01f));
 		ui_interface->declare(&fVslider1, "style", "knob");
-		ui_interface->addVerticalSlider("disto_tone", &fVslider1, FAUSTFLOAT(0.5f), FAUSTFLOAT(0.0f), FAUSTFLOAT(1.0f), FAUSTFLOAT(0.01f));
-		ui_interface->declare(&fVslider10, "style", "knob");
-		ui_interface->addVerticalSlider("master", &fVslider10, FAUSTFLOAT(-6.0f), FAUSTFLOAT(-6e+01f), FAUSTFLOAT(0.0f), FAUSTFLOAT(0.01f));
-		ui_interface->addVerticalSlider("pitch_shift", &fVslider0, FAUSTFLOAT(0.0f), FAUSTFLOAT(0.0f), FAUSTFLOAT(12.0f), FAUSTFLOAT(0.1f));
+		ui_interface->addVerticalSlider("disto_drive", &fVslider1, FAUSTFLOAT(0.3f), FAUSTFLOAT(0.0f), FAUSTFLOAT(1.0f), FAUSTFLOAT(0.01f));
+		ui_interface->declare(&fVslider0, "style", "knob");
+		ui_interface->addVerticalSlider("disto_tone", &fVslider0, FAUSTFLOAT(0.5f), FAUSTFLOAT(0.0f), FAUSTFLOAT(1.0f), FAUSTFLOAT(0.01f));
 		ui_interface->declare(&fVslider9, "style", "knob");
-		ui_interface->addVerticalSlider("reverb_room", &fVslider9, FAUSTFLOAT(0.15f), FAUSTFLOAT(0.0f), FAUSTFLOAT(1.0f), FAUSTFLOAT(0.01f));
-		ui_interface->declare(&fVslider4, "style", "knob");
-		ui_interface->addVerticalSlider("timbre", &fVslider4, FAUSTFLOAT(0.5f), FAUSTFLOAT(0.1f), FAUSTFLOAT(0.98f), FAUSTFLOAT(0.01f));
+		ui_interface->addVerticalSlider("master", &fVslider9, FAUSTFLOAT(-6.0f), FAUSTFLOAT(-6e+01f), FAUSTFLOAT(0.0f), FAUSTFLOAT(0.01f));
+		ui_interface->declare(&fVslider8, "style", "knob");
+		ui_interface->addVerticalSlider("reverb_room", &fVslider8, FAUSTFLOAT(0.15f), FAUSTFLOAT(0.0f), FAUSTFLOAT(1.0f), FAUSTFLOAT(0.01f));
+		ui_interface->declare(&fVslider3, "style", "knob");
+		ui_interface->addVerticalSlider("timbre", &fVslider3, FAUSTFLOAT(0.5f), FAUSTFLOAT(0.1f), FAUSTFLOAT(0.98f), FAUSTFLOAT(0.01f));
 		ui_interface->closeBox();
 		ui_interface->closeBox();
 	}
@@ -10800,156 +10783,145 @@ struct mydsp : public dsp {
 		float fSlow0 = fConst1 * std::pow(1e+01f, 0.05f * static_cast<float>(fVslider0));
 		float fSlow1 = fConst1 * static_cast<float>(fVslider1);
 		float fSlow2 = fConst1 * static_cast<float>(fVslider2);
-		float fSlow3 = fConst1 * static_cast<float>(fVslider3);
-		float fSlow4 = static_cast<float>(fButton0);
-		float fSlow5 = static_cast<float>(fVslider4);
-		float fSlow6 = 1.0f - fSlow5;
-		float fSlow7 = fSlow5 + 1.0f;
-		float fSlow8 = fConst1 * static_cast<float>(fVslider5);
-		float fSlow9 = static_cast<float>(fButton1);
-		float fSlow10 = fConst1 * static_cast<float>(fVslider6);
-		float fSlow11 = static_cast<float>(fButton2);
-		float fSlow12 = fConst1 * static_cast<float>(fVslider7);
-		float fSlow13 = static_cast<float>(fButton3);
-		float fSlow14 = fConst1 * static_cast<float>(fVslider8);
-		float fSlow15 = static_cast<float>(fButton4);
-		float fSlow16 = fConst1 * static_cast<float>(fVslider9);
-		float fSlow17 = fConst1 * std::pow(1e+01f, 0.05f * static_cast<float>(fVslider10));
+		float fSlow3 = static_cast<float>(fButton0);
+		float fSlow4 = static_cast<float>(fVslider3);
+		float fSlow5 = 1.0f - fSlow4;
+		float fSlow6 = fSlow4 + 1.0f;
+		float fSlow7 = fConst1 * static_cast<float>(fVslider4);
+		float fSlow8 = static_cast<float>(fButton1);
+		float fSlow9 = fConst1 * static_cast<float>(fVslider5);
+		float fSlow10 = static_cast<float>(fButton2);
+		float fSlow11 = fConst1 * static_cast<float>(fVslider6);
+		float fSlow12 = static_cast<float>(fButton3);
+		float fSlow13 = fConst1 * static_cast<float>(fVslider7);
+		float fSlow14 = static_cast<float>(fButton4);
+		float fSlow15 = fConst1 * static_cast<float>(fVslider8);
+		float fSlow16 = fConst1 * std::pow(1e+01f, 0.05f * static_cast<float>(fVslider9));
 		for (int i0 = 0; i0 < count; i0 = i0 + 1) {
-			fRec1[0] = fSlow0 + fConst2 * fRec1[1];
-			fRec0[0] = std::fmod(fRec0[1] + (1025.0f - std::pow(2.0f, 0.083333336f * fRec1[0])), 1024.0f);
-			float fTemp0 = std::min<float>(0.001953125f * fRec0[0], 1.0f);
+			fRec10[0] = fSlow0 + fConst2 * fRec10[1];
+			float fTemp0 = std::tan(fConst3 * (4e+03f * fRec10[0] + 5e+02f));
+			float fTemp1 = 1.0f / fTemp0;
+			float fTemp2 = (fTemp1 + 1.4142135f) / fTemp0 + 1.0f;
 			fRec12[0] = fSlow1 + fConst2 * fRec12[1];
-			float fTemp1 = std::tan(fConst3 * (4e+03f * fRec12[0] + 5e+02f));
-			float fTemp2 = 1.0f / fTemp1;
-			float fTemp3 = (fTemp2 + 1.4142135f) / fTemp1 + 1.0f;
-			fRec14[0] = fSlow2 + fConst2 * fRec14[1];
-			iRec16[0] = 1103515245 * iRec16[1] + 12345;
-			float fTemp4 = static_cast<float>(iRec16[0]);
-			fRec18[0] = fSlow3 + fConst2 * fRec18[1];
-			float fTemp5 = std::max<float>(1.0f, fRec18[0]);
-			fVec0[0] = fSlow4;
-			fRec17[0] = fRec17[1] + static_cast<float>((fSlow4 - fVec0[1]) > 0.0f) - fConst4 * fTemp5 * static_cast<float>(fRec17[1] > 0.0f);
-			fVec1[IOTA0 & 8191] = 0.5f * (fSlow7 * fRec15[1] + fSlow6 * fRec15[2]) * std::pow(0.001f, 0.25f / fTemp5) + 4.656613e-10f * static_cast<float>(fRec17[0] > 0.0f) * fTemp4;
-			fRec15[0] = fVec1[(IOTA0 - static_cast<int>(std::min<float>(4096.0f, std::max<float>(0.0f, fConst0 / fTemp5 + -1.0f)))) & 8191];
-			fRec21[0] = fSlow8 + fConst2 * fRec21[1];
-			float fTemp6 = std::max<float>(1.0f, fRec21[0]);
-			fVec2[0] = fSlow9;
-			fRec20[0] = fRec20[1] + static_cast<float>((fSlow9 - fVec2[1]) > 0.0f) - fConst4 * fTemp6 * static_cast<float>(fRec20[1] > 0.0f);
-			fVec3[IOTA0 & 8191] = 0.5f * (fSlow7 * fRec19[1] + fSlow6 * fRec19[2]) * std::pow(0.001f, 0.25f / fTemp6) + 4.656613e-10f * fTemp4 * static_cast<float>(fRec20[0] > 0.0f);
-			fRec19[0] = fVec3[(IOTA0 - static_cast<int>(std::min<float>(4096.0f, std::max<float>(0.0f, fConst0 / fTemp6 + -1.0f)))) & 8191];
-			fRec24[0] = fSlow10 + fConst2 * fRec24[1];
-			float fTemp7 = std::max<float>(1.0f, fRec24[0]);
-			fVec4[0] = fSlow11;
-			fRec23[0] = fRec23[1] + static_cast<float>((fSlow11 - fVec4[1]) > 0.0f) - fConst4 * fTemp7 * static_cast<float>(fRec23[1] > 0.0f);
-			fVec5[IOTA0 & 8191] = 0.5f * (fSlow7 * fRec22[1] + fSlow6 * fRec22[2]) * std::pow(0.001f, 0.25f / fTemp7) + 4.656613e-10f * fTemp4 * static_cast<float>(fRec23[0] > 0.0f);
-			fRec22[0] = fVec5[(IOTA0 - static_cast<int>(std::min<float>(4096.0f, std::max<float>(0.0f, fConst0 / fTemp7 + -1.0f)))) & 8191];
-			fRec27[0] = fSlow12 + fConst2 * fRec27[1];
-			float fTemp8 = std::max<float>(1.0f, fRec27[0]);
-			fVec6[0] = fSlow13;
-			fRec26[0] = fRec26[1] + static_cast<float>((fSlow13 - fVec6[1]) > 0.0f) - fConst4 * fTemp8 * static_cast<float>(fRec26[1] > 0.0f);
-			fVec7[IOTA0 & 8191] = 0.5f * (fSlow7 * fRec25[1] + fSlow6 * fRec25[2]) * std::pow(0.001f, 0.25f / fTemp8) + 4.656613e-10f * fTemp4 * static_cast<float>(fRec26[0] > 0.0f);
-			fRec25[0] = fVec7[(IOTA0 - static_cast<int>(std::min<float>(4096.0f, std::max<float>(0.0f, fConst0 / fTemp8 + -1.0f)))) & 8191];
-			fRec30[0] = fSlow14 + fConst2 * fRec30[1];
-			float fTemp9 = std::max<float>(1.0f, fRec30[0]);
-			fVec8[0] = fSlow15;
-			fRec29[0] = fRec29[1] + static_cast<float>((fSlow15 - fVec8[1]) > 0.0f) - fConst4 * fTemp9 * static_cast<float>(fRec29[1] > 0.0f);
-			fVec9[IOTA0 & 8191] = 0.5f * (fSlow7 * fRec28[1] + fSlow6 * fRec28[2]) * std::pow(0.001f, 0.25f / fTemp9) + 4.656613e-10f * fTemp4 * static_cast<float>(fRec29[0] > 0.0f);
-			fRec28[0] = fVec9[(IOTA0 - static_cast<int>(std::min<float>(4096.0f, std::max<float>(0.0f, fConst0 / fTemp9 + -1.0f)))) & 8191];
-			fRec13[0] = tanhf((fRec28[0] + fRec25[0] + fRec22[0] + fRec19[0] + fRec15[0]) * (15.0f * fRec14[0] + 1.0f)) - (fRec13[2] * ((fTemp2 + -1.4142135f) / fTemp1 + 1.0f) + 2.0f * fRec13[1] * (1.0f - 1.0f / mydsp_faustpower2_f(fTemp1))) / fTemp3;
-			float fTemp10 = (fRec13[2] + fRec13[0] + 2.0f * fRec13[1]) / fTemp3;
-			fVec10[0] = fTemp10;
-			fRec11[0] = -(fConst7 * (fConst6 * fRec11[1] - fConst5 * (fTemp10 - fVec10[1])));
-			fRec31[0] = fSlow16 + fConst2 * fRec31[1];
-			fRec32[0] = 0.4f * fRec32[1] + 0.6f * fRec10[1];
-			fVec11[IOTA0 & 8191] = fRec32[0] * fRec31[0] + fRec11[0];
-			fRec10[0] = fVec11[(IOTA0 - iConst8) & 8191];
+			iRec14[0] = 1103515245 * iRec14[1] + 12345;
+			float fTemp3 = static_cast<float>(iRec14[0]);
+			fRec16[0] = fSlow2 + fConst2 * fRec16[1];
+			float fTemp4 = std::max<float>(1.0f, fRec16[0]);
+			fVec0[0] = fSlow3;
+			fRec15[0] = fRec15[1] + static_cast<float>((fSlow3 - fVec0[1]) > 0.0f) - fConst4 * fTemp4 * static_cast<float>(fRec15[1] > 0.0f);
+			fVec1[IOTA0 & 8191] = 0.5f * (fSlow6 * fRec13[1] + fSlow5 * fRec13[2]) * std::pow(0.001f, 0.25f / fTemp4) + 4.656613e-10f * static_cast<float>(fRec15[0] > 0.0f) * fTemp3;
+			fRec13[0] = fVec1[(IOTA0 - static_cast<int>(std::min<float>(4096.0f, std::max<float>(0.0f, fConst0 / fTemp4 + -1.0f)))) & 8191];
+			fRec19[0] = fSlow7 + fConst2 * fRec19[1];
+			float fTemp5 = std::max<float>(1.0f, fRec19[0]);
+			fVec2[0] = fSlow8;
+			fRec18[0] = fRec18[1] + static_cast<float>((fSlow8 - fVec2[1]) > 0.0f) - fConst4 * fTemp5 * static_cast<float>(fRec18[1] > 0.0f);
+			fVec3[IOTA0 & 8191] = 0.5f * (fSlow6 * fRec17[1] + fSlow5 * fRec17[2]) * std::pow(0.001f, 0.25f / fTemp5) + 4.656613e-10f * fTemp3 * static_cast<float>(fRec18[0] > 0.0f);
+			fRec17[0] = fVec3[(IOTA0 - static_cast<int>(std::min<float>(4096.0f, std::max<float>(0.0f, fConst0 / fTemp5 + -1.0f)))) & 8191];
+			fRec22[0] = fSlow9 + fConst2 * fRec22[1];
+			float fTemp6 = std::max<float>(1.0f, fRec22[0]);
+			fVec4[0] = fSlow10;
+			fRec21[0] = fRec21[1] + static_cast<float>((fSlow10 - fVec4[1]) > 0.0f) - fConst4 * fTemp6 * static_cast<float>(fRec21[1] > 0.0f);
+			fVec5[IOTA0 & 8191] = 0.5f * (fSlow6 * fRec20[1] + fSlow5 * fRec20[2]) * std::pow(0.001f, 0.25f / fTemp6) + 4.656613e-10f * fTemp3 * static_cast<float>(fRec21[0] > 0.0f);
+			fRec20[0] = fVec5[(IOTA0 - static_cast<int>(std::min<float>(4096.0f, std::max<float>(0.0f, fConst0 / fTemp6 + -1.0f)))) & 8191];
+			fRec25[0] = fSlow11 + fConst2 * fRec25[1];
+			float fTemp7 = std::max<float>(1.0f, fRec25[0]);
+			fVec6[0] = fSlow12;
+			fRec24[0] = fRec24[1] + static_cast<float>((fSlow12 - fVec6[1]) > 0.0f) - fConst4 * fTemp7 * static_cast<float>(fRec24[1] > 0.0f);
+			fVec7[IOTA0 & 8191] = 0.5f * (fSlow6 * fRec23[1] + fSlow5 * fRec23[2]) * std::pow(0.001f, 0.25f / fTemp7) + 4.656613e-10f * fTemp3 * static_cast<float>(fRec24[0] > 0.0f);
+			fRec23[0] = fVec7[(IOTA0 - static_cast<int>(std::min<float>(4096.0f, std::max<float>(0.0f, fConst0 / fTemp7 + -1.0f)))) & 8191];
+			fRec28[0] = fSlow13 + fConst2 * fRec28[1];
+			float fTemp8 = std::max<float>(1.0f, fRec28[0]);
+			fVec8[0] = fSlow14;
+			fRec27[0] = fRec27[1] + static_cast<float>((fSlow14 - fVec8[1]) > 0.0f) - fConst4 * fTemp8 * static_cast<float>(fRec27[1] > 0.0f);
+			fVec9[IOTA0 & 8191] = 0.5f * (fSlow6 * fRec26[1] + fSlow5 * fRec26[2]) * std::pow(0.001f, 0.25f / fTemp8) + 4.656613e-10f * fTemp3 * static_cast<float>(fRec27[0] > 0.0f);
+			fRec26[0] = fVec9[(IOTA0 - static_cast<int>(std::min<float>(4096.0f, std::max<float>(0.0f, fConst0 / fTemp8 + -1.0f)))) & 8191];
+			fRec11[0] = tanhf((fRec26[0] + fRec23[0] + fRec20[0] + fRec17[0] + fRec13[0]) * (15.0f * fRec12[0] + 1.0f)) - (fRec11[2] * ((fTemp1 + -1.4142135f) / fTemp0 + 1.0f) + 2.0f * fRec11[1] * (1.0f - 1.0f / mydsp_faustpower2_f(fTemp0))) / fTemp2;
+			float fTemp9 = (fRec11[2] + fRec11[0] + 2.0f * fRec11[1]) / fTemp2;
+			fVec10[0] = fTemp9;
+			fRec9[0] = -(fConst7 * (fConst6 * fRec9[1] - fConst5 * (fTemp9 - fVec10[1])));
+			fRec29[0] = fSlow15 + fConst2 * fRec29[1];
+			fRec30[0] = 0.4f * fRec30[1] + 0.6f * fRec8[1];
+			fVec11[IOTA0 & 8191] = fRec30[0] * fRec29[0] + fRec9[0];
+			fRec8[0] = fVec11[(IOTA0 - iConst8) & 8191];
+			fRec32[0] = 0.4f * fRec32[1] + 0.6f * fRec31[1];
+			fVec12[IOTA0 & 8191] = fRec9[0] + fRec29[0] * fRec32[0];
+			fRec31[0] = fVec12[(IOTA0 - iConst9) & 8191];
 			fRec34[0] = 0.4f * fRec34[1] + 0.6f * fRec33[1];
-			fVec12[IOTA0 & 8191] = fRec11[0] + fRec31[0] * fRec34[0];
-			fRec33[0] = fVec12[(IOTA0 - iConst9) & 8191];
+			fVec13[IOTA0 & 8191] = fRec9[0] + fRec29[0] * fRec34[0];
+			fRec33[0] = fVec13[(IOTA0 - iConst10) & 8191];
 			fRec36[0] = 0.4f * fRec36[1] + 0.6f * fRec35[1];
-			fVec13[IOTA0 & 8191] = fRec11[0] + fRec31[0] * fRec36[0];
-			fRec35[0] = fVec13[(IOTA0 - iConst10) & 8191];
+			fVec14[IOTA0 & 8191] = fRec9[0] + fRec29[0] * fRec36[0];
+			fRec35[0] = fVec14[(IOTA0 - iConst11) & 8191];
 			fRec38[0] = 0.4f * fRec38[1] + 0.6f * fRec37[1];
-			fVec14[IOTA0 & 8191] = fRec11[0] + fRec31[0] * fRec38[0];
-			fRec37[0] = fVec14[(IOTA0 - iConst11) & 8191];
+			fVec15[IOTA0 & 8191] = fRec9[0] + fRec29[0] * fRec38[0];
+			fRec37[0] = fVec15[(IOTA0 - iConst12) & 8191];
 			fRec40[0] = 0.4f * fRec40[1] + 0.6f * fRec39[1];
-			fVec15[IOTA0 & 8191] = fRec11[0] + fRec31[0] * fRec40[0];
-			fRec39[0] = fVec15[(IOTA0 - iConst12) & 8191];
+			fVec16[IOTA0 & 8191] = fRec9[0] + fRec29[0] * fRec40[0];
+			fRec39[0] = fVec16[(IOTA0 - iConst13) & 8191];
 			fRec42[0] = 0.4f * fRec42[1] + 0.6f * fRec41[1];
-			fVec16[IOTA0 & 8191] = fRec11[0] + fRec31[0] * fRec42[0];
-			fRec41[0] = fVec16[(IOTA0 - iConst13) & 8191];
+			fVec17[IOTA0 & 8191] = fRec9[0] + fRec29[0] * fRec42[0];
+			fRec41[0] = fVec17[(IOTA0 - iConst14) & 8191];
 			fRec44[0] = 0.4f * fRec44[1] + 0.6f * fRec43[1];
-			fVec17[IOTA0 & 8191] = fRec11[0] + fRec31[0] * fRec44[0];
-			fRec43[0] = fVec17[(IOTA0 - iConst14) & 8191];
-			fRec46[0] = 0.4f * fRec46[1] + 0.6f * fRec45[1];
-			fVec18[IOTA0 & 8191] = fRec11[0] + fRec31[0] * fRec46[0];
-			fRec45[0] = fVec18[(IOTA0 - iConst15) & 8191];
-			float fTemp11 = fRec45[1] + fRec43[1] + fRec41[1] + fRec39[1] + fRec37[1] + fRec35[1] + fRec33[1] + 0.5f * fRec8[1] + fRec10[1];
-			fVec19[IOTA0 & 2047] = fTemp11;
-			fRec8[0] = fVec19[(IOTA0 - iConst16) & 2047];
-			float fRec9 = -(0.5f * fTemp11);
-			float fTemp12 = fRec8[1] + fRec9 + 0.5f * fRec6[1];
-			fVec20[IOTA0 & 2047] = fTemp12;
-			fRec6[0] = fVec20[(IOTA0 - iConst17) & 2047];
-			float fRec7 = -(0.5f * fTemp12);
-			float fTemp13 = fRec6[1] + fRec7 + 0.5f * fRec4[1];
-			fVec21[IOTA0 & 2047] = fTemp13;
-			fRec4[0] = fVec21[(IOTA0 - iConst18) & 2047];
-			float fRec5 = -(0.5f * fTemp13);
-			float fTemp14 = fRec4[1] + fRec5 + 0.5f * fRec2[1];
-			fVec22[IOTA0 & 1023] = fTemp14;
-			fRec2[0] = fVec22[(IOTA0 - iConst19) & 1023];
-			float fRec3 = -(0.5f * fTemp14);
-			float fTemp15 = fRec3 + fRec2[1];
-			fVec23[IOTA0 & 131071] = fTemp15;
-			float fTemp16 = fRec0[0] + 1024.0f;
-			int iTemp17 = static_cast<int>(fTemp16);
-			float fTemp18 = std::floor(fTemp16);
-			int iTemp19 = static_cast<int>(fRec0[0]);
-			float fTemp20 = std::floor(fRec0[0]);
-			fRec47[0] = fSlow17 + fConst2 * fRec47[1];
-			float fTemp21 = fRec47[0] * ((fVec23[(IOTA0 - std::min<int>(65537, std::max<int>(0, iTemp19))) & 131071] * (fTemp20 + (1.0f - fRec0[0])) + (fRec0[0] - fTemp20) * fVec23[(IOTA0 - std::min<int>(65537, std::max<int>(0, iTemp19 + 1))) & 131071]) * fTemp0 + (fVec23[(IOTA0 - std::min<int>(65537, std::max<int>(0, iTemp17))) & 131071] * (fTemp18 + (-1023.0f - fRec0[0])) + (fRec0[0] + (1024.0f - fTemp18)) * fVec23[(IOTA0 - std::min<int>(65537, std::max<int>(0, iTemp17 + 1))) & 131071]) * (1.0f - fTemp0));
-			output0[i0] = static_cast<FAUSTFLOAT>(fTemp21);
-			output1[i0] = static_cast<FAUSTFLOAT>(fTemp21);
-			fRec1[1] = fRec1[0];
-			fRec0[1] = fRec0[0];
+			fVec18[IOTA0 & 8191] = fRec9[0] + fRec29[0] * fRec44[0];
+			fRec43[0] = fVec18[(IOTA0 - iConst15) & 8191];
+			float fTemp10 = fRec43[1] + fRec41[1] + fRec39[1] + fRec37[1] + fRec35[1] + fRec33[1] + fRec31[1] + 0.5f * fRec6[1] + fRec8[1];
+			fVec19[IOTA0 & 2047] = fTemp10;
+			fRec6[0] = fVec19[(IOTA0 - iConst16) & 2047];
+			float fRec7 = -(0.5f * fTemp10);
+			float fTemp11 = fRec6[1] + fRec7 + 0.5f * fRec4[1];
+			fVec20[IOTA0 & 2047] = fTemp11;
+			fRec4[0] = fVec20[(IOTA0 - iConst17) & 2047];
+			float fRec5 = -(0.5f * fTemp11);
+			float fTemp12 = fRec4[1] + fRec5 + 0.5f * fRec2[1];
+			fVec21[IOTA0 & 2047] = fTemp12;
+			fRec2[0] = fVec21[(IOTA0 - iConst18) & 2047];
+			float fRec3 = -(0.5f * fTemp12);
+			float fTemp13 = fRec2[1] + fRec3 + 0.5f * fRec0[1];
+			fVec22[IOTA0 & 1023] = fTemp13;
+			fRec0[0] = fVec22[(IOTA0 - iConst19) & 1023];
+			float fRec1 = -(0.5f * fTemp13);
+			fRec45[0] = fSlow16 + fConst2 * fRec45[1];
+			float fTemp14 = fRec45[0] * (fRec1 + fRec0[1]);
+			output0[i0] = static_cast<FAUSTFLOAT>(fTemp14);
+			output1[i0] = static_cast<FAUSTFLOAT>(fTemp14);
+			fRec10[1] = fRec10[0];
 			fRec12[1] = fRec12[0];
-			fRec14[1] = fRec14[0];
-			iRec16[1] = iRec16[0];
-			fRec18[1] = fRec18[0];
+			iRec14[1] = iRec14[0];
+			fRec16[1] = fRec16[0];
 			fVec0[1] = fVec0[0];
-			fRec17[1] = fRec17[0];
-			IOTA0 = IOTA0 + 1;
-			fRec15[2] = fRec15[1];
 			fRec15[1] = fRec15[0];
-			fRec21[1] = fRec21[0];
-			fVec2[1] = fVec2[0];
-			fRec20[1] = fRec20[0];
-			fRec19[2] = fRec19[1];
-			fRec19[1] = fRec19[0];
-			fRec24[1] = fRec24[0];
-			fVec4[1] = fVec4[0];
-			fRec23[1] = fRec23[0];
-			fRec22[2] = fRec22[1];
-			fRec22[1] = fRec22[0];
-			fRec27[1] = fRec27[0];
-			fVec6[1] = fVec6[0];
-			fRec26[1] = fRec26[0];
-			fRec25[2] = fRec25[1];
-			fRec25[1] = fRec25[0];
-			fRec30[1] = fRec30[0];
-			fVec8[1] = fVec8[0];
-			fRec29[1] = fRec29[0];
-			fRec28[2] = fRec28[1];
-			fRec28[1] = fRec28[0];
+			IOTA0 = IOTA0 + 1;
 			fRec13[2] = fRec13[1];
 			fRec13[1] = fRec13[0];
-			fVec10[1] = fVec10[0];
+			fRec19[1] = fRec19[0];
+			fVec2[1] = fVec2[0];
+			fRec18[1] = fRec18[0];
+			fRec17[2] = fRec17[1];
+			fRec17[1] = fRec17[0];
+			fRec22[1] = fRec22[0];
+			fVec4[1] = fVec4[0];
+			fRec21[1] = fRec21[0];
+			fRec20[2] = fRec20[1];
+			fRec20[1] = fRec20[0];
+			fRec25[1] = fRec25[0];
+			fVec6[1] = fVec6[0];
+			fRec24[1] = fRec24[0];
+			fRec23[2] = fRec23[1];
+			fRec23[1] = fRec23[0];
+			fRec28[1] = fRec28[0];
+			fVec8[1] = fVec8[0];
+			fRec27[1] = fRec27[0];
+			fRec26[2] = fRec26[1];
+			fRec26[1] = fRec26[0];
+			fRec11[2] = fRec11[1];
 			fRec11[1] = fRec11[0];
-			fRec31[1] = fRec31[0];
+			fVec10[1] = fVec10[0];
+			fRec9[1] = fRec9[0];
+			fRec29[1] = fRec29[0];
+			fRec30[1] = fRec30[0];
+			fRec8[1] = fRec8[0];
 			fRec32[1] = fRec32[0];
-			fRec10[1] = fRec10[0];
+			fRec31[1] = fRec31[0];
 			fRec34[1] = fRec34[0];
 			fRec33[1] = fRec33[0];
 			fRec36[1] = fRec36[0];
@@ -10962,13 +10934,11 @@ struct mydsp : public dsp {
 			fRec41[1] = fRec41[0];
 			fRec44[1] = fRec44[0];
 			fRec43[1] = fRec43[0];
-			fRec46[1] = fRec46[0];
-			fRec45[1] = fRec45[0];
-			fRec8[1] = fRec8[0];
 			fRec6[1] = fRec6[0];
 			fRec4[1] = fRec4[0];
 			fRec2[1] = fRec2[0];
-			fRec47[1] = fRec47[0];
+			fRec0[1] = fRec0[0];
+			fRec45[1] = fRec45[0];
 		}
 	}
 
@@ -10981,43 +10951,41 @@ struct mydsp : public dsp {
 	#define FAUST_COMPILATION_OPIONS "-a /usr/local/share/faust/teensy/teensy.cpp -lang cpp -i -ct 1 -es 1 -mcd 16 -mdd 1024 -mdy 33 -uim -single -ftz 0"
 	#define FAUST_INPUTS 0
 	#define FAUST_OUTPUTS 2
-	#define FAUST_ACTIVES 16
+	#define FAUST_ACTIVES 15
 	#define FAUST_PASSIVES 0
 
-	FAUST_ADDVERTICALSLIDER("KISANA_GUITAR/Corde_1/frequence", fVslider8, 82.41f, 5.0f, 8.8e+02f, 0.1f);
+	FAUST_ADDVERTICALSLIDER("KISANA_GUITAR/Corde_1/frequence", fVslider7, 82.41f, 5.0f, 8.8e+02f, 0.1f);
 	FAUST_ADDBUTTON("KISANA_GUITAR/Corde_1/pincer", fButton4);
-	FAUST_ADDVERTICALSLIDER("KISANA_GUITAR/Corde_2/frequence", fVslider7, 1.1e+02f, 5.0f, 8.8e+02f, 0.1f);
+	FAUST_ADDVERTICALSLIDER("KISANA_GUITAR/Corde_2/frequence", fVslider6, 1.1e+02f, 5.0f, 8.8e+02f, 0.1f);
 	FAUST_ADDBUTTON("KISANA_GUITAR/Corde_2/pincer", fButton3);
-	FAUST_ADDVERTICALSLIDER("KISANA_GUITAR/Corde_3/frequence", fVslider6, 146.83f, 5.0f, 8.8e+02f, 0.1f);
+	FAUST_ADDVERTICALSLIDER("KISANA_GUITAR/Corde_3/frequence", fVslider5, 146.83f, 5.0f, 8.8e+02f, 0.1f);
 	FAUST_ADDBUTTON("KISANA_GUITAR/Corde_3/pincer", fButton2);
-	FAUST_ADDVERTICALSLIDER("KISANA_GUITAR/Corde_4/frequence", fVslider5, 196.0f, 5.0f, 8.8e+02f, 0.1f);
+	FAUST_ADDVERTICALSLIDER("KISANA_GUITAR/Corde_4/frequence", fVslider4, 196.0f, 5.0f, 8.8e+02f, 0.1f);
 	FAUST_ADDBUTTON("KISANA_GUITAR/Corde_4/pincer", fButton1);
-	FAUST_ADDVERTICALSLIDER("KISANA_GUITAR/Corde_5/frequence", fVslider3, 246.94f, 5.0f, 8.8e+02f, 0.1f);
+	FAUST_ADDVERTICALSLIDER("KISANA_GUITAR/Corde_5/frequence", fVslider2, 246.94f, 5.0f, 8.8e+02f, 0.1f);
 	FAUST_ADDBUTTON("KISANA_GUITAR/Corde_5/pincer", fButton0);
-	FAUST_ADDVERTICALSLIDER("KISANA_GUITAR/GLOBAL/disto_drive", fVslider2, 0.3f, 0.0f, 1.0f, 0.01f);
-	FAUST_ADDVERTICALSLIDER("KISANA_GUITAR/GLOBAL/disto_tone", fVslider1, 0.5f, 0.0f, 1.0f, 0.01f);
-	FAUST_ADDVERTICALSLIDER("KISANA_GUITAR/GLOBAL/master", fVslider10, -6.0f, -6e+01f, 0.0f, 0.01f);
-	FAUST_ADDVERTICALSLIDER("KISANA_GUITAR/GLOBAL/pitch_shift", fVslider0, 0.0f, 0.0f, 12.0f, 0.1f);
-	FAUST_ADDVERTICALSLIDER("KISANA_GUITAR/GLOBAL/reverb_room", fVslider9, 0.15f, 0.0f, 1.0f, 0.01f);
-	FAUST_ADDVERTICALSLIDER("KISANA_GUITAR/GLOBAL/timbre", fVslider4, 0.5f, 0.1f, 0.98f, 0.01f);
+	FAUST_ADDVERTICALSLIDER("KISANA_GUITAR/GLOBAL/disto_drive", fVslider1, 0.3f, 0.0f, 1.0f, 0.01f);
+	FAUST_ADDVERTICALSLIDER("KISANA_GUITAR/GLOBAL/disto_tone", fVslider0, 0.5f, 0.0f, 1.0f, 0.01f);
+	FAUST_ADDVERTICALSLIDER("KISANA_GUITAR/GLOBAL/master", fVslider9, -6.0f, -6e+01f, 0.0f, 0.01f);
+	FAUST_ADDVERTICALSLIDER("KISANA_GUITAR/GLOBAL/reverb_room", fVslider8, 0.15f, 0.0f, 1.0f, 0.01f);
+	FAUST_ADDVERTICALSLIDER("KISANA_GUITAR/GLOBAL/timbre", fVslider3, 0.5f, 0.1f, 0.98f, 0.01f);
 
 	#define FAUST_LIST_ACTIVES(p) \
-		p(VERTICALSLIDER, frequence, "KISANA_GUITAR/Corde_1/frequence", fVslider8, 82.41f, 5.0f, 8.8e+02f, 0.1f) \
+		p(VERTICALSLIDER, frequence, "KISANA_GUITAR/Corde_1/frequence", fVslider7, 82.41f, 5.0f, 8.8e+02f, 0.1f) \
 		p(BUTTON, pincer, "KISANA_GUITAR/Corde_1/pincer", fButton4, 0.0f, 0.0f, 1.0f, 1.0f) \
-		p(VERTICALSLIDER, frequence, "KISANA_GUITAR/Corde_2/frequence", fVslider7, 1.1e+02f, 5.0f, 8.8e+02f, 0.1f) \
+		p(VERTICALSLIDER, frequence, "KISANA_GUITAR/Corde_2/frequence", fVslider6, 1.1e+02f, 5.0f, 8.8e+02f, 0.1f) \
 		p(BUTTON, pincer, "KISANA_GUITAR/Corde_2/pincer", fButton3, 0.0f, 0.0f, 1.0f, 1.0f) \
-		p(VERTICALSLIDER, frequence, "KISANA_GUITAR/Corde_3/frequence", fVslider6, 146.83f, 5.0f, 8.8e+02f, 0.1f) \
+		p(VERTICALSLIDER, frequence, "KISANA_GUITAR/Corde_3/frequence", fVslider5, 146.83f, 5.0f, 8.8e+02f, 0.1f) \
 		p(BUTTON, pincer, "KISANA_GUITAR/Corde_3/pincer", fButton2, 0.0f, 0.0f, 1.0f, 1.0f) \
-		p(VERTICALSLIDER, frequence, "KISANA_GUITAR/Corde_4/frequence", fVslider5, 196.0f, 5.0f, 8.8e+02f, 0.1f) \
+		p(VERTICALSLIDER, frequence, "KISANA_GUITAR/Corde_4/frequence", fVslider4, 196.0f, 5.0f, 8.8e+02f, 0.1f) \
 		p(BUTTON, pincer, "KISANA_GUITAR/Corde_4/pincer", fButton1, 0.0f, 0.0f, 1.0f, 1.0f) \
-		p(VERTICALSLIDER, frequence, "KISANA_GUITAR/Corde_5/frequence", fVslider3, 246.94f, 5.0f, 8.8e+02f, 0.1f) \
+		p(VERTICALSLIDER, frequence, "KISANA_GUITAR/Corde_5/frequence", fVslider2, 246.94f, 5.0f, 8.8e+02f, 0.1f) \
 		p(BUTTON, pincer, "KISANA_GUITAR/Corde_5/pincer", fButton0, 0.0f, 0.0f, 1.0f, 1.0f) \
-		p(VERTICALSLIDER, disto_drive, "KISANA_GUITAR/GLOBAL/disto_drive", fVslider2, 0.3f, 0.0f, 1.0f, 0.01f) \
-		p(VERTICALSLIDER, disto_tone, "KISANA_GUITAR/GLOBAL/disto_tone", fVslider1, 0.5f, 0.0f, 1.0f, 0.01f) \
-		p(VERTICALSLIDER, master, "KISANA_GUITAR/GLOBAL/master", fVslider10, -6.0f, -6e+01f, 0.0f, 0.01f) \
-		p(VERTICALSLIDER, pitch_shift, "KISANA_GUITAR/GLOBAL/pitch_shift", fVslider0, 0.0f, 0.0f, 12.0f, 0.1f) \
-		p(VERTICALSLIDER, reverb_room, "KISANA_GUITAR/GLOBAL/reverb_room", fVslider9, 0.15f, 0.0f, 1.0f, 0.01f) \
-		p(VERTICALSLIDER, timbre, "KISANA_GUITAR/GLOBAL/timbre", fVslider4, 0.5f, 0.1f, 0.98f, 0.01f) \
+		p(VERTICALSLIDER, disto_drive, "KISANA_GUITAR/GLOBAL/disto_drive", fVslider1, 0.3f, 0.0f, 1.0f, 0.01f) \
+		p(VERTICALSLIDER, disto_tone, "KISANA_GUITAR/GLOBAL/disto_tone", fVslider0, 0.5f, 0.0f, 1.0f, 0.01f) \
+		p(VERTICALSLIDER, master, "KISANA_GUITAR/GLOBAL/master", fVslider9, -6.0f, -6e+01f, 0.0f, 0.01f) \
+		p(VERTICALSLIDER, reverb_room, "KISANA_GUITAR/GLOBAL/reverb_room", fVslider8, 0.15f, 0.0f, 1.0f, 0.01f) \
+		p(VERTICALSLIDER, timbre, "KISANA_GUITAR/GLOBAL/timbre", fVslider3, 0.5f, 0.1f, 0.98f, 0.01f) \
 
 	#define FAUST_LIST_PASSIVES(p) \
 
