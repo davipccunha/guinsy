@@ -10377,7 +10377,7 @@ struct mydsp : public dsp {
 	FAUSTFLOAT fVslider9;
 	float fConst1;
 	float fRec1[2];
-	float fRec0[4096];
+	float fRec0[2048];
 	FAUSTFLOAT fVslider10;
 	float fConst2;
 	float fConst3;
@@ -10530,7 +10530,7 @@ struct mydsp : public dsp {
 		for (int l22 = 0; l22 < 2; l22 = l22 + 1) {
 			fRec1[l22] = 0.0f;
 		}
-		for (int l23 = 0; l23 < 4096; l23 = l23 + 1) {
+		for (int l23 = 0; l23 < 2048; l23 = l23 + 1) {
 			fRec0[l23] = 0.0f;
 		}
 		for (int l24 = 0; l24 < 2; l24 = l24 + 1) {
@@ -10638,30 +10638,30 @@ struct mydsp : public dsp {
 			float fTemp0 = static_cast<float>(iRec3[0]);
 			fVec0[0] = fSlow4;
 			fRec4[0] = fRec4[1] + static_cast<float>((fSlow4 - fVec0[1]) > 0.0f) - fSlow3 * static_cast<float>(fRec4[1] > 0.0f);
-			fVec1[IOTA0 & 1023] = 0.9985f * (fSlow6 * fRec2[1] + fSlow5 * fRec2[2]) + 4.656613e-10f * static_cast<float>(fRec4[0] > 0.0f) * fTemp0;
+			fVec1[IOTA0 & 1023] = 0.985f * (fSlow6 * fRec2[1] + fSlow5 * fRec2[2]) + 4.656613e-10f * static_cast<float>(fRec4[0] > 0.0f) * fTemp0;
 			fRec2[0] = fVec1[(IOTA0 - iSlow7) & 1023];
 			fVec2[0] = fSlow10;
 			fRec6[0] = fRec6[1] + static_cast<float>((fSlow10 - fVec2[1]) > 0.0f) - fSlow9 * static_cast<float>(fRec6[1] > 0.0f);
-			fVec3[IOTA0 & 1023] = 0.9985f * (fSlow6 * fRec5[1] + fSlow5 * fRec5[2]) + 4.656613e-10f * fTemp0 * static_cast<float>(fRec6[0] > 0.0f);
+			fVec3[IOTA0 & 1023] = 0.985f * (fSlow6 * fRec5[1] + fSlow5 * fRec5[2]) + 4.656613e-10f * fTemp0 * static_cast<float>(fRec6[0] > 0.0f);
 			fRec5[0] = fVec3[(IOTA0 - iSlow11) & 1023];
 			fVec4[0] = fSlow14;
 			fRec8[0] = fRec8[1] + static_cast<float>((fSlow14 - fVec4[1]) > 0.0f) - fSlow13 * static_cast<float>(fRec8[1] > 0.0f);
-			fVec5[IOTA0 & 1023] = 0.9985f * (fSlow6 * fRec7[1] + fSlow5 * fRec7[2]) + 4.656613e-10f * fTemp0 * static_cast<float>(fRec8[0] > 0.0f);
+			fVec5[IOTA0 & 1023] = 0.985f * (fSlow6 * fRec7[1] + fSlow5 * fRec7[2]) + 4.656613e-10f * fTemp0 * static_cast<float>(fRec8[0] > 0.0f);
 			fRec7[0] = fVec5[(IOTA0 - iSlow15) & 1023];
 			fVec6[0] = fSlow18;
 			fRec10[0] = fRec10[1] + static_cast<float>((fSlow18 - fVec6[1]) > 0.0f) - fSlow17 * static_cast<float>(fRec10[1] > 0.0f);
-			fVec7[IOTA0 & 1023] = 0.9985f * (fSlow6 * fRec9[1] + fSlow5 * fRec9[2]) + 4.656613e-10f * fTemp0 * static_cast<float>(fRec10[0] > 0.0f);
+			fVec7[IOTA0 & 1023] = 0.985f * (fSlow6 * fRec9[1] + fSlow5 * fRec9[2]) + 4.656613e-10f * fTemp0 * static_cast<float>(fRec10[0] > 0.0f);
 			fRec9[0] = fVec7[(IOTA0 - iSlow19) & 1023];
 			fVec8[0] = fSlow22;
 			fRec12[0] = fRec12[1] + static_cast<float>((fSlow22 - fVec8[1]) > 0.0f) - fSlow21 * static_cast<float>(fRec12[1] > 0.0f);
-			fVec9[IOTA0 & 1023] = 0.9985f * (fSlow6 * fRec11[1] + fSlow5 * fRec11[2]) + 4.656613e-10f * fTemp0 * static_cast<float>(fRec12[0] > 0.0f);
+			fVec9[IOTA0 & 1023] = 0.985f * (fSlow6 * fRec11[1] + fSlow5 * fRec11[2]) + 4.656613e-10f * fTemp0 * static_cast<float>(fRec12[0] > 0.0f);
 			fRec11[0] = fVec9[(IOTA0 - iSlow23) & 1023];
 			float fTemp1 = tanhf(fSlow24 * (fRec11[0] + fRec9[0] + fRec7[0] + fRec5[0] + fRec2[0]));
 			fVec10[0] = fTemp1;
 			fRec1[0] = -(fSlow27 * (fSlow26 * fRec1[1] - (fTemp1 + fVec10[1])));
-			fRec0[IOTA0 & 4095] = fRec1[0] + fSlow0 * fRec0[(IOTA0 - 3841) & 4095];
+			fRec0[IOTA0 & 2047] = fRec1[0] + fSlow0 * fRec0[(IOTA0 - 1921) & 2047];
 			fRec13[0] = fSlow31 + fConst3 * fRec13[1];
-			float fTemp2 = fRec13[0] * (fSlow30 * fRec0[IOTA0 & 4095] + fSlow29 * (0.4f * fRec0[(IOTA0 - 901) & 4095] + 0.37f * fRec0[(IOTA0 - 778) & 4095] + 0.33f * fRec0[(IOTA0 - 1011) & 4095]));
+			float fTemp2 = fRec13[0] * (fSlow30 * fRec0[IOTA0 & 2047] + fSlow29 * (0.4f * fRec0[(IOTA0 - 901) & 2047] + 0.37f * fRec0[(IOTA0 - 778) & 2047] + 0.33f * fRec0[(IOTA0 - 1011) & 2047]));
 			output0[i0] = static_cast<FAUSTFLOAT>(fTemp2);
 			output1[i0] = static_cast<FAUSTFLOAT>(fTemp2);
 			IOTA0 = IOTA0 + 1;
