@@ -31,24 +31,28 @@ void initializeAudio() {
 }
 
 void handleGuitarInput() {
+  if (!guitarInput.isAnyFretPressed()) {
+    sine.setFreq(1.0f);
+  }
+
   if (guitarInput.getGreen()) {
-    sine.setFreq(notes::C4);
+    sine.setFreq(notes::E2);
   }
 
   if (guitarInput.getRed()) {
-    sine.setFreq(notes::D4);
+    sine.setFreq(notes::A2);
   }
 
   if (guitarInput.getYellow()) {
-    sine.setFreq(notes::E4);
+    sine.setFreq(notes::D3);
   }
 
   if (guitarInput.getBlue()) {
-    sine.setFreq(notes::G4);
+    sine.setFreq(notes::G3);
   }
 
   if (guitarInput.getOrange()) {
-    sine.setFreq(notes::A4);
+    sine.setFreq(notes::B3);
   }
 }
 

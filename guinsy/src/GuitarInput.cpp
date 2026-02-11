@@ -98,3 +98,14 @@ std::array<uint8_t, 2> GuitarInput::getJoystick() {
 
     return { joyX, joyY };
 }
+
+// Utils
+bool GuitarInput::isAnyFretPressed() {
+    bool green = this->getGreen();
+    bool red = this->getRed();
+    bool yellow = this->getYellow();
+    bool blue = this->getBlue();
+    bool orange = this->getOrange();
+
+    return green || red || yellow || blue || orange;
+}

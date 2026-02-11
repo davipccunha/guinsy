@@ -20,8 +20,10 @@ public:
     bool getPlus();
     bool getMinus();
 
-    std::array<uint8_t, 2> getJoystick();
     uint8_t getWhammy();
+    std::array<uint8_t, 2> getJoystick();
+
+    bool isAnyFretPressed();
 
 private:
     uint8_t data[6];
