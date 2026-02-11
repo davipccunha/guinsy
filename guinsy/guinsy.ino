@@ -26,7 +26,7 @@ void loop() {
 }
 
 void initializeAudio() {
-  AudioMemory(16);
+  AudioMemory(64);
   audioShield.enable();
   audioShield.volume(0.25);
 }
@@ -82,57 +82,57 @@ void play() {
       frequencies[4] = 1; // No sound
     }
 
-    dsp.setParamValue("/KISANA_GUITAR/Corde_1/frequence", frequencies[0]);
-    dsp.setParamValue("/KISANA_GUITAR/Corde_2/frequence", frequencies[1]);
-    dsp.setParamValue("/KISANA_GUITAR/Corde_3/frequence", frequencies[2]);
-    dsp.setParamValue("/KISANA_GUITAR/Corde_4/frequence", frequencies[3]);
-    dsp.setParamValue("/KISANA_GUITAR/Corde_5/frequence", frequencies[4]);
+    dsp.setParamValue("/KISANA_5_STRINGS/Corde_1/frequence", frequencies[0]);
+    dsp.setParamValue("/KISANA_5_STRINGS/Corde_2/frequence", frequencies[1]);
+    dsp.setParamValue("/KISANA_5_STRINGS/Corde_3/frequence", frequencies[2]);
+    dsp.setParamValue("/KISANA_5_STRINGS/Corde_4/frequence", frequencies[3]);
+    dsp.setParamValue("/KISANA_5_STRINGS/Corde_5/frequence", frequencies[4]);
   
     //Pinch
     if(frequencies[0] != 1){
-      dsp.setParamValue("/KISANA_GUITAR/Corde_1/pincer", 1.0);	
+      dsp.setParamValue("/KISANA_5_STRINGS/Corde_1/pincer", 1.0);	
     }
     if(frequencies[1] != 1){
-      dsp.setParamValue("/KISANA_GUITAR/Corde_2/pincer", 1.0);
+      dsp.setParamValue("/KISANA_5_STRINGS/Corde_2/pincer", 1.0);
     }
     if(frequencies[2] != 1){
-      dsp.setParamValue("/KISANA_GUITAR/Corde_3/pincer", 1.0);
+      dsp.setParamValue("/KISANA_5_STRINGS/Corde_3/pincer", 1.0);
     }
     if(frequencies[3] != 1){
-      dsp.setParamValue("/KISANA_GUITAR/Corde_4/pincer", 1.0);
+      dsp.setParamValue("/KISANA_5_STRINGS/Corde_4/pincer", 1.0);
     }
     if(frequencies[4] != 1){
-      dsp.setParamValue("/KISANA_GUITAR/Corde_5/pincer", 1.0);
+      dsp.setParamValue("/KISANA_5_STRINGS/Corde_5/pincer", 1.0);
     }
 
     delay(10);
 
-    dsp.setParamValue("/KISANA_GUITAR/Corde_1/pincer", 0.0);
-    dsp.setParamValue("/KISANA_GUITAR/Corde_2/pincer", 0.0);
-    dsp.setParamValue("/KISANA_GUITAR/Corde_3/pincer", 0.0);
-    dsp.setParamValue("/KISANA_GUITAR/Corde_4/pincer", 0.0);
-    dsp.setParamValue("/KISANA_GUITAR/Corde_5/pincer", 0.0);
+    dsp.setParamValue("/KISANA_5_STRINGS/Corde_1/pincer", 0.0);
+    dsp.setParamValue("/KISANA_5_STRINGS/Corde_2/pincer", 0.0);
+    dsp.setParamValue("/KISANA_5_STRINGS/Corde_3/pincer", 0.0);
+    dsp.setParamValue("/KISANA_5_STRINGS/Corde_4/pincer", 0.0);
+    dsp.setParamValue("/KISANA_5_STRINGS/Corde_5/pincer", 0.0);
   }
 }
  
 void updateSoundParameters(){
  
 	// Echo
-	dsp.setParamValue("/KISANA_GUITAR/GLOBAL/echo", 0.0);
+	dsp.setParamValue("/KISANA_5_STRINGS/GLOBAL/echo", 0.0);
 
   uint8_t whammy = guitarInput.getWhammy();
-  int pitchShift = map(whammy, 14, 25, 0, 6);
-  dsp.setParamValue("/KISANA_GUITAR/GLOBAL/pitch_shift", (float) pitchShift);
+  int pitchShift = map(whammy, 14, 25, 0, 12);
+  dsp.setParamValue("/KISANA_5_STRINGS/GLOBAL/pitch_shift", (float) pitchShift);
  
 	// float echoValue = (analogRead(A3) / 1023.0) * 0.9;
-	// dsp.setParamValue("/KISANA_GUITAR/GLOBAL/echo", echoValue);
+	// dsp.setParamValue("/KISANA_GUITARGLOBAL/echo", echoValue);
  
  
 	// Timbre
-	dsp.setParamValue("/KISANA_GUITAR/GLOBAL/timbre", 0.5);
+	dsp.setParamValue("/KISANA_5_STRINGS/GLOBAL/timbre", 0.5);
  
 	// float timbreValue = (analogRead(A8) / 1023.0) * 0.9;
-	// dsp.setParamValue("/KISANA_GUITAR/GLOBAL/timbre", timbreValue);
+	// dsp.setParamValue("/KISANA_GUITARGLOBAL/timbre", timbreValue);
  
 }
 
