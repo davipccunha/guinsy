@@ -10342,49 +10342,49 @@ struct mydsp : public dsp {
 	float fConst0;
 	float fConst1;
 	float fConst2;
-	FAUSTFLOAT fVslider0;
+	FAUSTFLOAT fButton0;
 	float fRec1[2];
 	float fRec0[2];
-	FAUSTFLOAT fVslider1;
+	FAUSTFLOAT fVslider0;
 	float fRec12[2];
 	float fConst3;
-	FAUSTFLOAT fVslider2;
+	FAUSTFLOAT fVslider1;
 	float fRec14[2];
 	int iRec16[2];
-	FAUSTFLOAT fVslider3;
+	FAUSTFLOAT fVslider2;
 	float fRec18[2];
 	float fConst4;
-	FAUSTFLOAT fButton0;
+	FAUSTFLOAT fButton1;
 	float fVec0[2];
 	float fRec17[2];
-	FAUSTFLOAT fVslider4;
+	FAUSTFLOAT fVslider3;
 	int IOTA0;
 	float fVec1[8192];
 	float fRec15[3];
-	FAUSTFLOAT fVslider5;
+	FAUSTFLOAT fVslider4;
 	float fRec21[2];
-	FAUSTFLOAT fButton1;
+	FAUSTFLOAT fButton2;
 	float fVec2[2];
 	float fRec20[2];
 	float fVec3[8192];
 	float fRec19[3];
-	FAUSTFLOAT fVslider6;
+	FAUSTFLOAT fVslider5;
 	float fRec24[2];
-	FAUSTFLOAT fButton2;
+	FAUSTFLOAT fButton3;
 	float fVec4[2];
 	float fRec23[2];
 	float fVec5[8192];
 	float fRec22[3];
-	FAUSTFLOAT fVslider7;
+	FAUSTFLOAT fVslider6;
 	float fRec27[2];
-	FAUSTFLOAT fButton3;
+	FAUSTFLOAT fButton4;
 	float fVec6[2];
 	float fRec26[2];
 	float fVec7[8192];
 	float fRec25[3];
-	FAUSTFLOAT fVslider8;
+	FAUSTFLOAT fVslider7;
 	float fRec30[2];
-	FAUSTFLOAT fButton4;
+	FAUSTFLOAT fButton5;
 	float fVec8[2];
 	float fRec29[2];
 	float fVec9[8192];
@@ -10395,7 +10395,7 @@ struct mydsp : public dsp {
 	float fConst6;
 	float fConst7;
 	float fRec11[2];
-	FAUSTFLOAT fVslider9;
+	FAUSTFLOAT fVslider8;
 	float fRec31[2];
 	float fRec32[2];
 	float fVec11[8192];
@@ -10442,7 +10442,7 @@ struct mydsp : public dsp {
 	int iConst19;
 	float fRec2[2];
 	float fVec23[131072];
-	FAUSTFLOAT fVslider10;
+	FAUSTFLOAT fVslider9;
 	float fRec47[2];
 	
 	mydsp() {
@@ -10539,22 +10539,22 @@ struct mydsp : public dsp {
 	}
 	
 	virtual void instanceResetUserInterface() {
-		fVslider0 = static_cast<FAUSTFLOAT>(0.0f);
-		fVslider1 = static_cast<FAUSTFLOAT>(0.5f);
-		fVslider2 = static_cast<FAUSTFLOAT>(0.3f);
-		fVslider3 = static_cast<FAUSTFLOAT>(246.94f);
 		fButton0 = static_cast<FAUSTFLOAT>(0.0f);
-		fVslider4 = static_cast<FAUSTFLOAT>(0.5f);
-		fVslider5 = static_cast<FAUSTFLOAT>(196.0f);
+		fVslider0 = static_cast<FAUSTFLOAT>(0.5f);
+		fVslider1 = static_cast<FAUSTFLOAT>(0.3f);
+		fVslider2 = static_cast<FAUSTFLOAT>(246.94f);
 		fButton1 = static_cast<FAUSTFLOAT>(0.0f);
-		fVslider6 = static_cast<FAUSTFLOAT>(146.83f);
+		fVslider3 = static_cast<FAUSTFLOAT>(0.5f);
+		fVslider4 = static_cast<FAUSTFLOAT>(196.0f);
 		fButton2 = static_cast<FAUSTFLOAT>(0.0f);
-		fVslider7 = static_cast<FAUSTFLOAT>(1.1e+02f);
+		fVslider5 = static_cast<FAUSTFLOAT>(146.83f);
 		fButton3 = static_cast<FAUSTFLOAT>(0.0f);
-		fVslider8 = static_cast<FAUSTFLOAT>(82.41f);
+		fVslider6 = static_cast<FAUSTFLOAT>(1.1e+02f);
 		fButton4 = static_cast<FAUSTFLOAT>(0.0f);
-		fVslider9 = static_cast<FAUSTFLOAT>(0.15f);
-		fVslider10 = static_cast<FAUSTFLOAT>(-6.0f);
+		fVslider7 = static_cast<FAUSTFLOAT>(82.41f);
+		fButton5 = static_cast<FAUSTFLOAT>(0.0f);
+		fVslider8 = static_cast<FAUSTFLOAT>(0.15f);
+		fVslider9 = static_cast<FAUSTFLOAT>(-6.0f);
 	}
 	
 	virtual void instanceClear() {
@@ -10787,37 +10787,37 @@ struct mydsp : public dsp {
 	virtual void buildUserInterface(UI* ui_interface) {
 		ui_interface->openHorizontalBox("KISANA_GUITAR");
 		ui_interface->openVerticalBox("Corde_1");
-		ui_interface->addVerticalSlider("frequence", &fVslider8, FAUSTFLOAT(82.41f), FAUSTFLOAT(5.0f), FAUSTFLOAT(8.8e+02f), FAUSTFLOAT(0.1f));
-		ui_interface->addButton("pincer", &fButton4);
+		ui_interface->addVerticalSlider("frequence", &fVslider7, FAUSTFLOAT(82.41f), FAUSTFLOAT(5.0f), FAUSTFLOAT(8.8e+02f), FAUSTFLOAT(0.1f));
+		ui_interface->addButton("pincer", &fButton5);
 		ui_interface->closeBox();
 		ui_interface->openVerticalBox("Corde_2");
-		ui_interface->addVerticalSlider("frequence", &fVslider7, FAUSTFLOAT(1.1e+02f), FAUSTFLOAT(5.0f), FAUSTFLOAT(8.8e+02f), FAUSTFLOAT(0.1f));
-		ui_interface->addButton("pincer", &fButton3);
+		ui_interface->addVerticalSlider("frequence", &fVslider6, FAUSTFLOAT(1.1e+02f), FAUSTFLOAT(5.0f), FAUSTFLOAT(8.8e+02f), FAUSTFLOAT(0.1f));
+		ui_interface->addButton("pincer", &fButton4);
 		ui_interface->closeBox();
 		ui_interface->openVerticalBox("Corde_3");
-		ui_interface->addVerticalSlider("frequence", &fVslider6, FAUSTFLOAT(146.83f), FAUSTFLOAT(5.0f), FAUSTFLOAT(8.8e+02f), FAUSTFLOAT(0.1f));
-		ui_interface->addButton("pincer", &fButton2);
+		ui_interface->addVerticalSlider("frequence", &fVslider5, FAUSTFLOAT(146.83f), FAUSTFLOAT(5.0f), FAUSTFLOAT(8.8e+02f), FAUSTFLOAT(0.1f));
+		ui_interface->addButton("pincer", &fButton3);
 		ui_interface->closeBox();
 		ui_interface->openVerticalBox("Corde_4");
-		ui_interface->addVerticalSlider("frequence", &fVslider5, FAUSTFLOAT(196.0f), FAUSTFLOAT(5.0f), FAUSTFLOAT(8.8e+02f), FAUSTFLOAT(0.1f));
-		ui_interface->addButton("pincer", &fButton1);
+		ui_interface->addVerticalSlider("frequence", &fVslider4, FAUSTFLOAT(196.0f), FAUSTFLOAT(5.0f), FAUSTFLOAT(8.8e+02f), FAUSTFLOAT(0.1f));
+		ui_interface->addButton("pincer", &fButton2);
 		ui_interface->closeBox();
 		ui_interface->openVerticalBox("Corde_5");
-		ui_interface->addVerticalSlider("frequence", &fVslider3, FAUSTFLOAT(246.94f), FAUSTFLOAT(5.0f), FAUSTFLOAT(8.8e+02f), FAUSTFLOAT(0.1f));
-		ui_interface->addButton("pincer", &fButton0);
+		ui_interface->addVerticalSlider("frequence", &fVslider2, FAUSTFLOAT(246.94f), FAUSTFLOAT(5.0f), FAUSTFLOAT(8.8e+02f), FAUSTFLOAT(0.1f));
+		ui_interface->addButton("pincer", &fButton1);
 		ui_interface->closeBox();
 		ui_interface->openVerticalBox("GLOBAL");
-		ui_interface->declare(&fVslider2, "style", "knob");
-		ui_interface->addVerticalSlider("disto_drive", &fVslider2, FAUSTFLOAT(0.3f), FAUSTFLOAT(0.0f), FAUSTFLOAT(1.0f), FAUSTFLOAT(0.01f));
+		ui_interface->addButton("Shift_ON", &fButton0);
 		ui_interface->declare(&fVslider1, "style", "knob");
-		ui_interface->addVerticalSlider("disto_tone", &fVslider1, FAUSTFLOAT(0.5f), FAUSTFLOAT(0.0f), FAUSTFLOAT(1.0f), FAUSTFLOAT(0.01f));
-		ui_interface->declare(&fVslider10, "style", "knob");
-		ui_interface->addVerticalSlider("master", &fVslider10, FAUSTFLOAT(-6.0f), FAUSTFLOAT(-6e+01f), FAUSTFLOAT(0.0f), FAUSTFLOAT(0.01f));
-		ui_interface->addVerticalSlider("pitch_shift", &fVslider0, FAUSTFLOAT(0.0f), FAUSTFLOAT(0.0f), FAUSTFLOAT(12.0f), FAUSTFLOAT(0.1f));
+		ui_interface->addVerticalSlider("disto_drive", &fVslider1, FAUSTFLOAT(0.3f), FAUSTFLOAT(0.0f), FAUSTFLOAT(1.0f), FAUSTFLOAT(0.01f));
+		ui_interface->declare(&fVslider0, "style", "knob");
+		ui_interface->addVerticalSlider("disto_tone", &fVslider0, FAUSTFLOAT(0.5f), FAUSTFLOAT(0.0f), FAUSTFLOAT(1.0f), FAUSTFLOAT(0.01f));
 		ui_interface->declare(&fVslider9, "style", "knob");
-		ui_interface->addVerticalSlider("reverb_room", &fVslider9, FAUSTFLOAT(0.15f), FAUSTFLOAT(0.0f), FAUSTFLOAT(1.0f), FAUSTFLOAT(0.01f));
-		ui_interface->declare(&fVslider4, "style", "knob");
-		ui_interface->addVerticalSlider("timbre", &fVslider4, FAUSTFLOAT(0.5f), FAUSTFLOAT(0.1f), FAUSTFLOAT(0.98f), FAUSTFLOAT(0.01f));
+		ui_interface->addVerticalSlider("master", &fVslider9, FAUSTFLOAT(-6.0f), FAUSTFLOAT(-6e+01f), FAUSTFLOAT(0.0f), FAUSTFLOAT(0.01f));
+		ui_interface->declare(&fVslider8, "style", "knob");
+		ui_interface->addVerticalSlider("reverb_room", &fVslider8, FAUSTFLOAT(0.15f), FAUSTFLOAT(0.0f), FAUSTFLOAT(1.0f), FAUSTFLOAT(0.01f));
+		ui_interface->declare(&fVslider3, "style", "knob");
+		ui_interface->addVerticalSlider("timbre", &fVslider3, FAUSTFLOAT(0.5f), FAUSTFLOAT(0.1f), FAUSTFLOAT(0.98f), FAUSTFLOAT(0.01f));
 		ui_interface->closeBox();
 		ui_interface->closeBox();
 	}
@@ -10825,27 +10825,27 @@ struct mydsp : public dsp {
 	virtual void compute(int count, FAUSTFLOAT** RESTRICT inputs, FAUSTFLOAT** RESTRICT outputs) {
 		FAUSTFLOAT* output0 = outputs[0];
 		FAUSTFLOAT* output1 = outputs[1];
-		float fSlow0 = fConst1 * static_cast<float>(fVslider0);
-		float fSlow1 = fConst1 * static_cast<float>(fVslider1);
-		float fSlow2 = fConst1 * static_cast<float>(fVslider2);
-		float fSlow3 = fConst1 * static_cast<float>(fVslider3);
-		float fSlow4 = static_cast<float>(fButton0);
-		float fSlow5 = static_cast<float>(fVslider4);
+		float fSlow0 = fConst1 * static_cast<float>(fButton0);
+		float fSlow1 = fConst1 * static_cast<float>(fVslider0);
+		float fSlow2 = fConst1 * static_cast<float>(fVslider1);
+		float fSlow3 = fConst1 * static_cast<float>(fVslider2);
+		float fSlow4 = static_cast<float>(fButton1);
+		float fSlow5 = static_cast<float>(fVslider3);
 		float fSlow6 = 1.0f - fSlow5;
 		float fSlow7 = fSlow5 + 1.0f;
-		float fSlow8 = fConst1 * static_cast<float>(fVslider5);
-		float fSlow9 = static_cast<float>(fButton1);
-		float fSlow10 = fConst1 * static_cast<float>(fVslider6);
-		float fSlow11 = static_cast<float>(fButton2);
-		float fSlow12 = fConst1 * static_cast<float>(fVslider7);
-		float fSlow13 = static_cast<float>(fButton3);
-		float fSlow14 = fConst1 * static_cast<float>(fVslider8);
-		float fSlow15 = static_cast<float>(fButton4);
-		float fSlow16 = fConst1 * static_cast<float>(fVslider9);
-		float fSlow17 = fConst1 * std::pow(1e+01f, 0.05f * static_cast<float>(fVslider10));
+		float fSlow8 = fConst1 * static_cast<float>(fVslider4);
+		float fSlow9 = static_cast<float>(fButton2);
+		float fSlow10 = fConst1 * static_cast<float>(fVslider5);
+		float fSlow11 = static_cast<float>(fButton3);
+		float fSlow12 = fConst1 * static_cast<float>(fVslider6);
+		float fSlow13 = static_cast<float>(fButton4);
+		float fSlow14 = fConst1 * static_cast<float>(fVslider7);
+		float fSlow15 = static_cast<float>(fButton5);
+		float fSlow16 = fConst1 * static_cast<float>(fVslider8);
+		float fSlow17 = fConst1 * std::pow(1e+01f, 0.05f * static_cast<float>(fVslider9));
 		for (int i0 = 0; i0 < count; i0 = i0 + 1) {
 			fRec1[0] = fSlow0 + fConst2 * fRec1[1];
-			fRec0[0] = std::fmod(fRec0[1] + (1025.0f - std::pow(2.0f, 0.083333336f * fRec1[0])), 1024.0f);
+			fRec0[0] = std::fmod(fRec0[1] + (1025.0f - std::pow(2.0f, 0.020833334f * fRec1[0])), 1024.0f);
 			float fTemp0 = std::min<float>(0.001953125f * fRec0[0], 1.0f);
 			fRec12[0] = fSlow1 + fConst2 * fRec12[1];
 			float fTemp1 = std::tan(fConst3 * (4e+03f * fRec12[0] + 5e+02f));
@@ -11012,40 +11012,40 @@ struct mydsp : public dsp {
 	#define FAUST_ACTIVES 16
 	#define FAUST_PASSIVES 0
 
-	FAUST_ADDVERTICALSLIDER("KISANA_GUITAR/Corde_1/frequence", fVslider8, 82.41f, 5.0f, 8.8e+02f, 0.1f);
-	FAUST_ADDBUTTON("KISANA_GUITAR/Corde_1/pincer", fButton4);
-	FAUST_ADDVERTICALSLIDER("KISANA_GUITAR/Corde_2/frequence", fVslider7, 1.1e+02f, 5.0f, 8.8e+02f, 0.1f);
-	FAUST_ADDBUTTON("KISANA_GUITAR/Corde_2/pincer", fButton3);
-	FAUST_ADDVERTICALSLIDER("KISANA_GUITAR/Corde_3/frequence", fVslider6, 146.83f, 5.0f, 8.8e+02f, 0.1f);
-	FAUST_ADDBUTTON("KISANA_GUITAR/Corde_3/pincer", fButton2);
-	FAUST_ADDVERTICALSLIDER("KISANA_GUITAR/Corde_4/frequence", fVslider5, 196.0f, 5.0f, 8.8e+02f, 0.1f);
-	FAUST_ADDBUTTON("KISANA_GUITAR/Corde_4/pincer", fButton1);
-	FAUST_ADDVERTICALSLIDER("KISANA_GUITAR/Corde_5/frequence", fVslider3, 246.94f, 5.0f, 8.8e+02f, 0.1f);
-	FAUST_ADDBUTTON("KISANA_GUITAR/Corde_5/pincer", fButton0);
-	FAUST_ADDVERTICALSLIDER("KISANA_GUITAR/GLOBAL/disto_drive", fVslider2, 0.3f, 0.0f, 1.0f, 0.01f);
-	FAUST_ADDVERTICALSLIDER("KISANA_GUITAR/GLOBAL/disto_tone", fVslider1, 0.5f, 0.0f, 1.0f, 0.01f);
-	FAUST_ADDVERTICALSLIDER("KISANA_GUITAR/GLOBAL/master", fVslider10, -6.0f, -6e+01f, 0.0f, 0.01f);
-	FAUST_ADDVERTICALSLIDER("KISANA_GUITAR/GLOBAL/pitch_shift", fVslider0, 0.0f, 0.0f, 12.0f, 0.1f);
-	FAUST_ADDVERTICALSLIDER("KISANA_GUITAR/GLOBAL/reverb_room", fVslider9, 0.15f, 0.0f, 1.0f, 0.01f);
-	FAUST_ADDVERTICALSLIDER("KISANA_GUITAR/GLOBAL/timbre", fVslider4, 0.5f, 0.1f, 0.98f, 0.01f);
+	FAUST_ADDVERTICALSLIDER("KISANA_GUITAR/Corde_1/frequence", fVslider7, 82.41f, 5.0f, 8.8e+02f, 0.1f);
+	FAUST_ADDBUTTON("KISANA_GUITAR/Corde_1/pincer", fButton5);
+	FAUST_ADDVERTICALSLIDER("KISANA_GUITAR/Corde_2/frequence", fVslider6, 1.1e+02f, 5.0f, 8.8e+02f, 0.1f);
+	FAUST_ADDBUTTON("KISANA_GUITAR/Corde_2/pincer", fButton4);
+	FAUST_ADDVERTICALSLIDER("KISANA_GUITAR/Corde_3/frequence", fVslider5, 146.83f, 5.0f, 8.8e+02f, 0.1f);
+	FAUST_ADDBUTTON("KISANA_GUITAR/Corde_3/pincer", fButton3);
+	FAUST_ADDVERTICALSLIDER("KISANA_GUITAR/Corde_4/frequence", fVslider4, 196.0f, 5.0f, 8.8e+02f, 0.1f);
+	FAUST_ADDBUTTON("KISANA_GUITAR/Corde_4/pincer", fButton2);
+	FAUST_ADDVERTICALSLIDER("KISANA_GUITAR/Corde_5/frequence", fVslider2, 246.94f, 5.0f, 8.8e+02f, 0.1f);
+	FAUST_ADDBUTTON("KISANA_GUITAR/Corde_5/pincer", fButton1);
+	FAUST_ADDBUTTON("KISANA_GUITAR/GLOBAL/Shift_ON", fButton0);
+	FAUST_ADDVERTICALSLIDER("KISANA_GUITAR/GLOBAL/disto_drive", fVslider1, 0.3f, 0.0f, 1.0f, 0.01f);
+	FAUST_ADDVERTICALSLIDER("KISANA_GUITAR/GLOBAL/disto_tone", fVslider0, 0.5f, 0.0f, 1.0f, 0.01f);
+	FAUST_ADDVERTICALSLIDER("KISANA_GUITAR/GLOBAL/master", fVslider9, -6.0f, -6e+01f, 0.0f, 0.01f);
+	FAUST_ADDVERTICALSLIDER("KISANA_GUITAR/GLOBAL/reverb_room", fVslider8, 0.15f, 0.0f, 1.0f, 0.01f);
+	FAUST_ADDVERTICALSLIDER("KISANA_GUITAR/GLOBAL/timbre", fVslider3, 0.5f, 0.1f, 0.98f, 0.01f);
 
 	#define FAUST_LIST_ACTIVES(p) \
-		p(VERTICALSLIDER, frequence, "KISANA_GUITAR/Corde_1/frequence", fVslider8, 82.41f, 5.0f, 8.8e+02f, 0.1f) \
-		p(BUTTON, pincer, "KISANA_GUITAR/Corde_1/pincer", fButton4, 0.0f, 0.0f, 1.0f, 1.0f) \
-		p(VERTICALSLIDER, frequence, "KISANA_GUITAR/Corde_2/frequence", fVslider7, 1.1e+02f, 5.0f, 8.8e+02f, 0.1f) \
-		p(BUTTON, pincer, "KISANA_GUITAR/Corde_2/pincer", fButton3, 0.0f, 0.0f, 1.0f, 1.0f) \
-		p(VERTICALSLIDER, frequence, "KISANA_GUITAR/Corde_3/frequence", fVslider6, 146.83f, 5.0f, 8.8e+02f, 0.1f) \
-		p(BUTTON, pincer, "KISANA_GUITAR/Corde_3/pincer", fButton2, 0.0f, 0.0f, 1.0f, 1.0f) \
-		p(VERTICALSLIDER, frequence, "KISANA_GUITAR/Corde_4/frequence", fVslider5, 196.0f, 5.0f, 8.8e+02f, 0.1f) \
-		p(BUTTON, pincer, "KISANA_GUITAR/Corde_4/pincer", fButton1, 0.0f, 0.0f, 1.0f, 1.0f) \
-		p(VERTICALSLIDER, frequence, "KISANA_GUITAR/Corde_5/frequence", fVslider3, 246.94f, 5.0f, 8.8e+02f, 0.1f) \
-		p(BUTTON, pincer, "KISANA_GUITAR/Corde_5/pincer", fButton0, 0.0f, 0.0f, 1.0f, 1.0f) \
-		p(VERTICALSLIDER, disto_drive, "KISANA_GUITAR/GLOBAL/disto_drive", fVslider2, 0.3f, 0.0f, 1.0f, 0.01f) \
-		p(VERTICALSLIDER, disto_tone, "KISANA_GUITAR/GLOBAL/disto_tone", fVslider1, 0.5f, 0.0f, 1.0f, 0.01f) \
-		p(VERTICALSLIDER, master, "KISANA_GUITAR/GLOBAL/master", fVslider10, -6.0f, -6e+01f, 0.0f, 0.01f) \
-		p(VERTICALSLIDER, pitch_shift, "KISANA_GUITAR/GLOBAL/pitch_shift", fVslider0, 0.0f, 0.0f, 12.0f, 0.1f) \
-		p(VERTICALSLIDER, reverb_room, "KISANA_GUITAR/GLOBAL/reverb_room", fVslider9, 0.15f, 0.0f, 1.0f, 0.01f) \
-		p(VERTICALSLIDER, timbre, "KISANA_GUITAR/GLOBAL/timbre", fVslider4, 0.5f, 0.1f, 0.98f, 0.01f) \
+		p(VERTICALSLIDER, frequence, "KISANA_GUITAR/Corde_1/frequence", fVslider7, 82.41f, 5.0f, 8.8e+02f, 0.1f) \
+		p(BUTTON, pincer, "KISANA_GUITAR/Corde_1/pincer", fButton5, 0.0f, 0.0f, 1.0f, 1.0f) \
+		p(VERTICALSLIDER, frequence, "KISANA_GUITAR/Corde_2/frequence", fVslider6, 1.1e+02f, 5.0f, 8.8e+02f, 0.1f) \
+		p(BUTTON, pincer, "KISANA_GUITAR/Corde_2/pincer", fButton4, 0.0f, 0.0f, 1.0f, 1.0f) \
+		p(VERTICALSLIDER, frequence, "KISANA_GUITAR/Corde_3/frequence", fVslider5, 146.83f, 5.0f, 8.8e+02f, 0.1f) \
+		p(BUTTON, pincer, "KISANA_GUITAR/Corde_3/pincer", fButton3, 0.0f, 0.0f, 1.0f, 1.0f) \
+		p(VERTICALSLIDER, frequence, "KISANA_GUITAR/Corde_4/frequence", fVslider4, 196.0f, 5.0f, 8.8e+02f, 0.1f) \
+		p(BUTTON, pincer, "KISANA_GUITAR/Corde_4/pincer", fButton2, 0.0f, 0.0f, 1.0f, 1.0f) \
+		p(VERTICALSLIDER, frequence, "KISANA_GUITAR/Corde_5/frequence", fVslider2, 246.94f, 5.0f, 8.8e+02f, 0.1f) \
+		p(BUTTON, pincer, "KISANA_GUITAR/Corde_5/pincer", fButton1, 0.0f, 0.0f, 1.0f, 1.0f) \
+		p(BUTTON, Shift_ON, "KISANA_GUITAR/GLOBAL/Shift_ON", fButton0, 0.0f, 0.0f, 1.0f, 1.0f) \
+		p(VERTICALSLIDER, disto_drive, "KISANA_GUITAR/GLOBAL/disto_drive", fVslider1, 0.3f, 0.0f, 1.0f, 0.01f) \
+		p(VERTICALSLIDER, disto_tone, "KISANA_GUITAR/GLOBAL/disto_tone", fVslider0, 0.5f, 0.0f, 1.0f, 0.01f) \
+		p(VERTICALSLIDER, master, "KISANA_GUITAR/GLOBAL/master", fVslider9, -6.0f, -6e+01f, 0.0f, 0.01f) \
+		p(VERTICALSLIDER, reverb_room, "KISANA_GUITAR/GLOBAL/reverb_room", fVslider8, 0.15f, 0.0f, 1.0f, 0.01f) \
+		p(VERTICALSLIDER, timbre, "KISANA_GUITAR/GLOBAL/timbre", fVslider3, 0.5f, 0.1f, 0.98f, 0.01f) \
 
 	#define FAUST_LIST_PASSIVES(p) \
 
