@@ -24,6 +24,7 @@ public:
     std::array<uint8_t, 2> getJoystick();
 
     bool isAnyFretPressed();
+    bool getStrum();
 
 private:
     uint8_t data[6];

@@ -109,3 +109,7 @@ bool GuitarInput::isAnyFretPressed() {
 
     return green || red || yellow || blue || orange;
 }
+
+bool GuitarInput::getStrum() {
+    return this->getStrumUp() || this->getStrumDown();
+}
