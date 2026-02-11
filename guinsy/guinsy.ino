@@ -33,6 +33,8 @@ void initializeAudio() {
  
 bool strumFlag = false;
 
+int currentOctave = 0; // This is not an absolute octave but rather a relative octave shift that will be applied to the final strings frequency
+
 void play() {
   if (!guitarInput.getStrum() && !strumFlag) {
     return;
@@ -82,11 +84,13 @@ void play() {
       frequencies[4] = 1; // No sound
     }
 
-    dsp.setParamValue("/KISANA_5_STRINGS/Corde_1/frequence", frequencies[0]);
-    dsp.setParamValue("/KISANA_5_STRINGS/Corde_2/frequence", frequencies[1]);
-    dsp.setParamValue("/KISANA_5_STRINGS/Corde_3/frequence", frequencies[2]);
-    dsp.setParamValue("/KISANA_5_STRINGS/Corde_4/frequence", frequencies[3]);
-    dsp.setParamValue("/KISANA_5_STRINGS/Corde_5/frequence", frequencies[4]);
+    int octaveFactor = pow(2, currentOctave);
+
+    dsp.setParamValue("/KISANA_5_STRINGS/Corde_1/frequence", frequencies[0] * octaveFactor);
+    dsp.setParamValue("/KISANA_5_STRINGS/Corde_2/frequence", frequencies[1] * octaveFactor);
+    dsp.setParamValue("/KISANA_5_STRINGS/Corde_3/frequence", frequencies[2] * octaveFactor);
+    dsp.setParamValue("/KISANA_5_STRINGS/Corde_4/frequence", frequencies[3] * octaveFactor);
+    dsp.setParamValue("/KISANA_5_STRINGS/Corde_5/frequence", frequencies[4] * octaveFactor);
   
     //Pinch
     if(frequencies[0] != 1){
@@ -114,26 +118,67 @@ void play() {
     dsp.setParamValue("/KISANA_5_STRINGS/Corde_5/pincer", 0.0);
   }
 }
- 
-void updateSoundParameters(){
+
+bool plusFlag = false, minusFlag = false;
+
+void updateSoundParameters() {
  
 	// Echo
 	dsp.setParamValue("/KISANA_5_STRINGS/GLOBAL/echo", 0.0);
 
+  // Pitch shift
   uint8_t whammy = guitarInput.getWhammy();
   int pitchShift = map(whammy, 14, 25, 0, 12);
-  dsp.setParamValue("/KISANA_5_STRINGS/GLOBAL/pitch_shift", (float) pitchShift);
- 
-	// float echoValue = (analogRead(A3) / 1023.0) * 0.9;
-	// dsp.setParamValue("/KISANA_GUITARGLOBAL/echo", echoValue);
- 
+  dsp.setParamValue("/KISANA_5_STRINGS/GLOBAL/pitch_shift", (float) pitchShift); 
  
 	// Timbre
 	dsp.setParamValue("/KISANA_5_STRINGS/GLOBAL/timbre", 0.5);
- 
-	// float timbreValue = (analogRead(A8) / 1023.0) * 0.9;
-	// dsp.setParamValue("/KISANA_GUITARGLOBAL/timbre", timbreValue);
- 
+
+  // Octave
+  handleOctaveUp();
+  handleOctaveDown();
+}
+
+void handleOctaveUp() {
+  if (!guitarInput.getPlus() && !plusFlag) {
+    return;
+  }
+
+  if (guitarInput.getPlus() && plusFlag) {
+    return;
+  }
+
+  if (!guitarInput.getPlus() && plusFlag) {
+    plusFlag = false;
+    return;
+  };
+
+  if (guitarInput.getPlus() && !plusFlag) {
+    plusFlag = true;
+    currentOctave++;
+    Serial.printf("%d\n", currentOctave);
+  }
+}
+
+void handleOctaveDown() {
+  if (!guitarInput.getMinus() && !minusFlag) {
+    return;
+  }
+
+  if (guitarInput.getMinus() && minusFlag) {
+    return;
+  }
+
+  if (!guitarInput.getMinus() && minusFlag) {
+    minusFlag = false;
+    return;
+  };
+
+  if (guitarInput.getMinus() && !minusFlag) {
+    minusFlag = true;
+    currentOctave = max(0, currentOctave - 1);
+    Serial.printf("%d\n", currentOctave);
+  }
 }
 
 void printGuitarInput() {
