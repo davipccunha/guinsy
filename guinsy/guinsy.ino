@@ -1,17 +1,55 @@
+#include <Audio.h>
 #include "src/GuitarInput.h"
+#include "src/MyDsp.h"
+#include "src/NoteFrequencies.h"
 
 GuitarInput guitarInput;
+MyDsp sine;
+AudioOutputI2S out;
+AudioControlSGTL5000 audioShield;
+AudioConnection patchCord0(sine, 0, out, 0);
+AudioConnection patchCord1(sine, 0, out, 1);
 
 void setup() {
   Serial.begin(9600);
+  initializeAudio();
   guitarInput.begin();
 }
 
 void loop() {
   guitarInput.update();
+  handleGuitarInput();
   printGuitarInput();
 
   delay(10);
+}
+
+void initializeAudio() {
+  AudioMemory(2);
+  audioShield.enable();
+  audioShield.volume(0.25);
+}
+
+void handleGuitarInput() {
+  if (guitarInput.getGreen()) {
+    sine.setFreq(notes::C4);
+  }
+
+  if (guitarInput.getRed()) {
+    sine.setFreq(notes::D4);
+  }
+
+  if (guitarInput.getYellow()) {
+    sine.setFreq(notes::E4);
+  }
+
+  if (guitarInput.getBlue()) {
+    sine.setFreq(notes::G4);
+  }
+
+  if (guitarInput.getOrange()) {
+    sine.setFreq(notes::A4);
+  }
 }
 
 void printGuitarInput() {

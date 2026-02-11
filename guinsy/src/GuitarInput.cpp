@@ -49,10 +49,6 @@ void GuitarInput::update() {
         data[i] = Wire.read();
         i++;
     }
-
-    for (int j = 0; i < 6; i++) {
-        Serial.printf("Byte %d = %d\n", j, data[j]);
-    }
 }
 
 bool GuitarInput::getGreen() {
