@@ -30,15 +30,9 @@ void initializeAudio() {
   audioShield.enable();
   audioShield.volume(0.25);
 }
-<<<<<<< HEAD
-
-bool strumFlag = false;
-
-=======
  
 bool strumFlag = false;
 
->>>>>>> f8f7e4f9177d88757dc56fa8da863aa04efb8541
 void play() {
   if (!guitarInput.getStrum() && !strumFlag) {
     return;
