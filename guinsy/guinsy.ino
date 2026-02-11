@@ -8,7 +8,7 @@ FaustGuitar dsp;
 AudioOutputI2S out;
 AudioControlSGTL5000 audioShield;
 AudioConnection patchCord0(dsp, 0, out, 0);
-AudioConnection patchCord1(dsp, 1, out, 1);
+AudioConnection patchCord1(dsp, 0, out, 1);
 
 void setup() {
   Serial.begin(9600);
@@ -18,87 +18,111 @@ void setup() {
 
 void loop() {
   guitarInput.update();
-  settings();
-	play();
+  updateSoundParameters();
 
-  // handleGuitarInput();
-  // printGuitarInput();
+  play();
 
-  delay(10);
+  delay(5);
 }
 
 void initializeAudio() {
-  AudioMemory(2);
+  AudioMemory(16);
   audioShield.enable();
   audioShield.volume(0.25);
 }
- 
-void play(){
-  float frequencies[5];
 
-  if (guitarInput.getGreen()) { 
-    frequencies[0] = notes::E2;
-  } else {
-    frequencies[0] = 1.0f;
+bool strumFlag = false;
+
+void play() {
+  if (!guitarInput.getStrum() && !strumFlag) {
+    return;
   }
 
-  if (guitarInput.getRed()) {
-    frequencies[1] = notes::A3;
-  } else {
-    frequencies[1] = 1.0f;
+  if (guitarInput.getStrum() && strumFlag) {
+    return;
   }
 
-  if (guitarInput.getYellow()) {
-    frequencies[2] = notes::D3;
-  } else {
-    frequencies[2] = 1.0f;
-  }
+  if (!guitarInput.getStrum() && strumFlag) {
+    strumFlag = false;
+    return;
+  };
 
-  if (guitarInput.getBlue()) {
-    frequencies[3] = notes::G3;
-  } else {
-    frequencies[3] = 1.0f;
-  }
+  if (guitarInput.getStrum() && !strumFlag) {
+    strumFlag = true;
+  
+    float frequencies[5];
 
-  if (guitarInput.getOrange()) {
-    frequencies[4] = notes::B3;
-  } else {
-    frequencies[4] = 1.0f;
-  }
+    if (guitarInput.getGreen()) {
+      frequencies[0] = notes::E2;
+    } else {
+      frequencies[0] = 1; // No sound
+    }
+  
+    if (guitarInput.getRed()) {
+      frequencies[1] = notes::A2;
+    } else {
+      frequencies[1] = 1; // No sound
+    }
+  
+    if (guitarInput.getYellow()) {
+      frequencies[2] = notes::D3;
+    } else {
+      frequencies[2] = 1; // No sound
+    }
+  
+    if (guitarInput.getBlue()) {
+      frequencies[3] = notes::G3;
+    } else {
+      frequencies[3] = 1; // No sound
+    }
+  
+    if (guitarInput.getOrange()) {
+      frequencies[4]=notes::B3;
+    } else {
+      frequencies[4] = 1; // No sound
+    }
 
-	dsp.setParamValue("/KISANA_GUITAR/Corde_1/frequence", frequencies[0]);
-	dsp.setParamValue("/KISANA_GUITAR/Corde_2/frequence", frequencies[1]);
-	dsp.setParamValue("/KISANA_GUITAR/Corde_3/frequence", frequencies[2]);
-	dsp.setParamValue("/KISANA_GUITAR/Corde_4/frequence", frequencies[3]);
-	dsp.setParamValue("/KISANA_GUITAR/Corde_5/frequence", frequencies[4]);
- 
-	//Pinch
-	if(frequencies[0] < 20){
-		dsp.setParamValue("/KISANA_GUITAR/Corde_1/pincer", 1.0);	
-	}
-	if(frequencies[1] < 20){
-		dsp.setParamValue("/KISANA_GUITAR/Corde_2/pincer", 1.0);
-	}
-	if(frequencies[2] < 20){
-		dsp.setParamValue("/KISANA_GUITAR/Corde_3/pincer", 1.0);
-	}
-	if(frequencies[3] < 20){
-		dsp.setParamValue("/KISANA_GUITAR/Corde_4/pincer", 1.0);
-	}
-	if(frequencies[4] < 20){
-		dsp.setParamValue("/KISANA_GUITAR/Corde_5/pincer", 1.0);
-	}
-	delay(10);
-	dsp.setParamValue("/KISANA_GUITAR/Corde_1/pincer", 0.0);
-	dsp.setParamValue("/KISANA_GUITAR/Corde_2/pincer", 0.0);
-	dsp.setParamValue("/KISANA_GUITAR/Corde_3/pincer", 0.0);
-	dsp.setParamValue("/KISANA_GUITAR/Corde_4/pincer", 0.0);
-	dsp.setParamValue("/KISANA_GUITAR/Corde_5/pincer", 0.0);
+    dsp.setParamValue("/KISANA_GUITAR/Corde_1/frequence", frequencies[0]);
+    dsp.setParamValue("/KISANA_GUITAR/Corde_2/frequence", frequencies[1]);
+    dsp.setParamValue("/KISANA_GUITAR/Corde_3/frequence", frequencies[2]);
+    dsp.setParamValue("/KISANA_GUITAR/Corde_4/frequence", frequencies[3]);
+    dsp.setParamValue("/KISANA_GUITAR/Corde_5/frequence", frequencies[4]);
+  
+    //Pinch
+    if(frequencies[0] != 1){
+      dsp.setParamValue("/KISANA_GUITAR/Corde_1/pincer", 1.0);	
+    }
+    if(frequencies[1] != 1){
+      dsp.setParamValue("/KISANA_GUITAR/Corde_2/pincer", 1.0);
+    }
+    if(frequencies[2] != 1){
+      dsp.setParamValue("/KISANA_GUITAR/Corde_3/pincer", 1.0);
+    }
+    if(frequencies[3] != 1){
+      dsp.setParamValue("/KISANA_GUITAR/Corde_4/pincer", 1.0);
+    }
+    if(frequencies[4] != 1){
+      dsp.setParamValue("/KISANA_GUITAR/Corde_5/pincer", 1.0);
+    }
+
+    delay(10);
+
+    dsp.setParamValue("/KISANA_GUITAR/Corde_1/pincer", 0.0);
+    dsp.setParamValue("/KISANA_GUITAR/Corde_2/pincer", 0.0);
+    dsp.setParamValue("/KISANA_GUITAR/Corde_3/pincer", 0.0);
+    dsp.setParamValue("/KISANA_GUITAR/Corde_4/pincer", 0.0);
+    dsp.setParamValue("/KISANA_GUITAR/Corde_5/pincer", 0.0);
+  }
 }
  
-void settings(){
+void updateSoundParameters(){
+ 
 	// Echo
 	dsp.setParamValue("/KISANA_GUITAR/GLOBAL/echo", 0.0);
+
+  uint8_t whammy = guitarInput.getWhammy();
+  int pitchShift = map(whammy, 14, 25, 0, 6);
+  dsp.setParamValue("/KISANA_GUITAR/GLOBAL/pitch_shift", (float) pitchShift);
  
 	// float echoValue = (analogRead(A3) / 1023.0) * 0.9;
 	// dsp.setParamValue("/KISANA_GUITAR/GLOBAL/echo", echoValue);
@@ -109,6 +133,7 @@ void settings(){
  
 	// float timbreValue = (analogRead(A8) / 1023.0) * 0.9;
 	// dsp.setParamValue("/KISANA_GUITAR/GLOBAL/timbre", timbreValue);
+ 
 }
 
 void printGuitarInput() {
