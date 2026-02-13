@@ -1,0 +1,6 @@
+customtkinter
+matplotlib
+numpy
+mido
+python-rtmidi
+pyserial

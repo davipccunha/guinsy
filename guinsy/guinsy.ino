@@ -13,6 +13,13 @@ AudioConnection patchCord1(dsp, 0, out, 1);
 
 IntervalMapping controllerMapping(guitarInput, dsp);
 
+// Définition des valeurs (puissances de 2)
+const byte GREEN_MASK   = 1;  // 00001
+const byte RED_MASK  = 2;  // 00010
+const byte YELLOW_MASK  = 4;  // 00100
+const byte BLUE_MASK   = 8;  // 01000
+const byte ORANGE_MASK = 16; // 10000
+
 void setup() {
   usbMIDI.setHandleControlChange(OnControlChange);
   Serial.begin(9600);
@@ -28,6 +35,8 @@ void loop() {
   guitarInput.update();
 
   controllerMapping.handleButtons();
+
+  printPressedFrets();
 
   play();
 
@@ -47,7 +56,6 @@ float mapMIDItoDB(int value) {
 }
 
 void OnControlChange(byte channel, byte control, byte value) {
-  Serial.printf("MIDI Recu - CC: %d, Valeur: %d\n", control, value);
     float valFloat = (float)value;
     
     // Filtres EQ (CC 21 à 26)
@@ -84,6 +92,23 @@ void play() {
     strumFlag = true;
     controllerMapping.play();
   }
+}
+void envoyerEtat(byte masqueBoutons, String nomAccord) {
+  // Format : N:MASQUE:ACCORD
+  // Exemple : N:5:C Maj (5 = Vert + Jaune)
+  Serial.print("N:");
+  Serial.print(masqueBoutons);
+  Serial.print(":");
+  Serial.println(nomAccord);
+}
+void printPressedFrets(){
+byte etatActuel = 0;
+  if (guitarInput.getGreen()) etatActuel |= GREEN_MASK;
+  if (guitarInput.getRed()) etatActuel |= RED_MASK;
+  if (guitarInput.getYellow()) etatActuel |= YELLOW_MASK;
+  if (guitarInput.getBlue()) etatActuel |= BLUE_MASK;
+  if (guitarInput.getOrange()) etatActuel |= ORANGE_MASK;
+  envoyerEtat(etatActuel, controllerMapping.getReadableKey());
 }
 
 void printGuitarInput() {
