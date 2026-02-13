@@ -2,6 +2,7 @@
 #include "src/GuitarInput.h"
 #include "src/FaustGuitar.h"
 #include "src/ActualGuitarMapping.h"
+#include "src/IntervalMapping.h"
 
 GuitarInput guitarInput;
 FaustGuitar dsp;
@@ -10,7 +11,7 @@ AudioControlSGTL5000 audioShield;
 AudioConnection patchCord0(dsp, 0, out, 0);
 AudioConnection patchCord1(dsp, 0, out, 1);
 
-ActualGuitarMapping controllerMapping(guitarInput, dsp);
+IntervalMapping controllerMapping(guitarInput, dsp);
 
 void setup() {
   Serial.begin(9600);
