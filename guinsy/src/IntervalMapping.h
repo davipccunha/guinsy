@@ -8,6 +8,10 @@ private:
     int currentOctave = 0; // This is an absolute octave, meaning 0 = fundamentals
     int keyIndex = 0;
 
+    const uint32_t scrollDelay = 120;
+    uint32_t lastKeyUp = 0;
+    uint32_t lastKeyDown = 0;
+
     bool plusFlag = false, minusFlag = false, joystickPositiveYFlag = false, joystickNegativeYFlag = false;
 
     void handleOctaveUp();

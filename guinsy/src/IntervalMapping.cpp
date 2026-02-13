@@ -121,46 +121,37 @@ void IntervalMapping::handleOctaveDown() {
 void IntervalMapping::handleKeyUp() {
     bool joystickUp = guitarInput.getJoystick()[1] < 15;
 
-    if (!joystickUp && !joystickNegativeYFlag) {
-        return;
-    }
+    if (joystickUp) {
+        uint32_t currentTime = millis();
 
-    if (joystickUp && joystickNegativeYFlag) {
-        return;
-    }
+        if (!joystickNegativeYFlag || (currentTime - lastKeyUp >= scrollDelay)) {
+            keyIndex = (keyIndex + 1) % 12;
+            
+            Serial.printf("Current key: %s\n", getReadableKey());
 
-    if (!joystickUp && joystickNegativeYFlag) {
+            lastKeyUp = currentTime;
+            joystickNegativeYFlag = true;
+        }
+    } else {
         joystickNegativeYFlag = false;
-        return;
-    };
-
-    if (joystickUp && !joystickNegativeYFlag) {
-        joystickNegativeYFlag = true;
-        keyIndex = (keyIndex + 1) % 12;
-        Serial.printf("Current key: %s\n", getReadableKey());
     }
 }
 
 void IntervalMapping::handleKeyDown() {
     bool joystickDown = guitarInput.getJoystick()[1] > 50;
 
-    if (!joystickDown && !joystickPositiveYFlag) {
-        return;
-    }
+    if (joystickDown) {
+        uint32_t currentTime = millis();
 
-    if (joystickDown && joystickPositiveYFlag) {
-        return;
-    }
+        if (!joystickPositiveYFlag || (currentTime - lastKeyDown >= scrollDelay)) {
+            keyIndex = (12 + keyIndex - 1) % 12; // If index is negative, we go back. For index = 0, index - 1 = -1, -1 + 12 = 11
+            Serial.printf("Current key: %s\n", getReadableKey());
 
-    if (!joystickDown && joystickPositiveYFlag) {
+            lastKeyDown = currentTime;
+            joystickPositiveYFlag = true;
+        }
+    } else {
         joystickPositiveYFlag = false;
-        return;
-    };
-
-    if (joystickDown && !joystickPositiveYFlag) {
-        joystickPositiveYFlag = true;
-        keyIndex = (12 + keyIndex - 1) % 12; // If index is negative, we go back. For index = 0, index - 1 = -1, -1 + 12 = 11
-        Serial.printf("Current key: %s\n", getReadableKey());
     }
 }
 
