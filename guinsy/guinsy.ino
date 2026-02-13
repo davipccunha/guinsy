@@ -14,6 +14,7 @@ AudioConnection patchCord1(dsp, 0, out, 1);
 IntervalMapping controllerMapping(guitarInput, dsp);
 
 void setup() {
+  usbMIDI.setHandleControlChange(OnControlChange);
   Serial.begin(9600);
   initializeAudio();
   guitarInput.begin();
@@ -22,6 +23,8 @@ void setup() {
 }
 
 void loop() {
+  usbMIDI.read(); // Très important pour traiter les messages entrants
+
   guitarInput.update();
 
   controllerMapping.handleButtons();
@@ -37,6 +40,30 @@ void initializeAudio() {
   audioShield.volume(0.25);
 }
  
+ 
+// Fonction de mapping pour convertir 0-127 en -20dB / +20dB
+float mapMIDItoDB(int value) {
+    return ((value - 64.0) / 64.0) * 20.0;
+}
+
+void OnControlChange(byte channel, byte control, byte value) {
+  Serial.printf("MIDI Recu - CC: %d, Valeur: %d\n", control, value);
+    float valFloat = (float)value;
+    
+    // Filtres EQ (CC 21 à 26)
+    if (control >= 21 && control <= 26) {
+        int band = control - 20; // 1 à 6
+        float db = ((valFloat - 64.0) / 64.0) * 20.0;
+        String path = "/KISANA_5_STRINGS/EQ/b" + String(band);
+        dsp.setParamValue(path.c_str(), db);
+    }
+    // Master Gain (CC 7)
+    else if (control == 7) {
+        float db = map(value, 0, 127, -60, 0);
+        dsp.setParamValue("/KISANA_5_STRINGS/GLOBAL/master", db);
+    }
+}
+
 bool strumFlag = false; // This avoids the strum bar to be continuously pressed
 
 void play() {
