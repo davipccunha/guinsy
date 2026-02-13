@@ -23,7 +23,7 @@ void IntervalMapping::play() {
     }
 
     if (guitarInput.getBlue()) {
-        frequencies[3] = rootFrequency * 1.334; // 4th
+        frequencies[3] = rootFrequency * 1.414; // Diminished 5th //1.334; // 4th
     } else {
         frequencies[3] = 1; // No sound
     }
