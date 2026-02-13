@@ -5,21 +5,6 @@
 
 class IntervalMapping : public ControllerMapping {
 private:
-    static constexpr float fundamentals[12] = {
-        fundamentals::C,
-        fundamentals::Cs,
-        fundamentals::D,
-        fundamentals::Ds,
-        fundamentals::E,
-        fundamentals::F,
-        fundamentals::Fs,
-        fundamentals::G,
-        fundamentals::Gs,
-        fundamentals::A,
-        fundamentals::As,
-        fundamentals::B
-    };
-
     int currentOctave = 0; // This is an absolute octave, meaning 0 = fundamentals
     int keyIndex = 0;
 
@@ -38,4 +23,5 @@ public:
 
     void play() override;
     void handleButtons() override;
+    const char* getReadableKey();
 };

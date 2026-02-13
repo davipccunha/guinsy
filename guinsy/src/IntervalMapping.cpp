@@ -93,7 +93,7 @@ void IntervalMapping::handleOctaveUp() {
     if (guitarInput.getPlus() && !plusFlag) {
         plusFlag = true;
         currentOctave = min(currentOctave + 1, 5); // For some reason, a higher octave does not change anything on the headphones
-        Serial.printf("Current octave: %d\n", currentOctave);
+        Serial.printf("Current key: %s\n", getReadableKey());
     }
 }
 
@@ -114,7 +114,7 @@ void IntervalMapping::handleOctaveDown() {
     if (guitarInput.getMinus() && !minusFlag) {
         minusFlag = true;
         currentOctave = max(0, currentOctave - 1);
-        Serial.printf("Current octave: %d\n", currentOctave);
+        Serial.printf("Current key: %s\n", getReadableKey());
     }
 }
 
@@ -137,7 +137,7 @@ void IntervalMapping::handleKeyUp() {
     if (joystickUp && !joystickNegativeYFlag) {
         joystickNegativeYFlag = true;
         keyIndex = (keyIndex + 1) % 12;
-        Serial.printf("Current key index: %d\n", keyIndex);
+        Serial.printf("Current key: %s\n", getReadableKey());
     }
 }
 
@@ -160,7 +160,7 @@ void IntervalMapping::handleKeyDown() {
     if (joystickDown && !joystickPositiveYFlag) {
         joystickPositiveYFlag = true;
         keyIndex = (12 + keyIndex - 1) % 12; // If index is negative, we go back. For index = 0, index - 1 = -1, -1 + 12 = 11
-        Serial.printf("Current key index: %d\n", keyIndex);
+        Serial.printf("Current key: %s\n", getReadableKey());
     }
 }
 
@@ -177,4 +177,13 @@ void IntervalMapping::updateSoundParameters() {
 
 	// Timbre
 	dsp.setParamValue("/KISANA_5_STRINGS/GLOBAL/timbre", 0.5);
+}
+
+const char* IntervalMapping::getReadableKey() {
+    static char buffer[16]; 
+
+    // snprintf is the C++ version of the "f-string"
+    snprintf(buffer, sizeof(buffer), "%s%d", readableKeys[keyIndex], currentOctave);
+
+    return buffer;
 }
