@@ -1,7 +1,7 @@
 #include <Audio.h>
 #include "src/GuitarInput.h"
 #include "src/FaustGuitar.h"
-#include "src/ActualGuitar.h"
+#include "src/ActualGuitarMapping.h"
 
 GuitarInput guitarInput;
 FaustGuitar dsp;
@@ -10,7 +10,7 @@ AudioControlSGTL5000 audioShield;
 AudioConnection patchCord0(dsp, 0, out, 0);
 AudioConnection patchCord1(dsp, 0, out, 1);
 
-ActualGuitar controllerMapping(guitarInput, dsp);
+ActualGuitarMapping controllerMapping(guitarInput, dsp);
 
 void setup() {
   Serial.begin(9600);

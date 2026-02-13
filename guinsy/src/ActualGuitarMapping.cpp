@@ -1,7 +1,7 @@
-#include "ActualGuitar.h"
+#include "ActualGuitarMapping.h"
 #include "NoteFrequencies.h"
 
-void ActualGuitar::play() {
+void ActualGuitarMapping::play() {
     float frequencies[5];
 
     if (guitarInput.getGreen()) {
@@ -68,13 +68,13 @@ void ActualGuitar::play() {
     dsp.setParamValue("/KISANA_5_STRINGS/Corde_5/pincer", 0.0);
 }
 
-void ActualGuitar::handleButtons() {
+void ActualGuitarMapping::handleButtons() {
     this->handleOctaveUp();
     this->handleOctaveDown();
     this->updateSoundParameters();
 }
 
-void ActualGuitar::handleOctaveUp() {
+void ActualGuitarMapping::handleOctaveUp() {
     if (!guitarInput.getPlus() && !plusFlag) {
         return;
     }
@@ -95,7 +95,7 @@ void ActualGuitar::handleOctaveUp() {
     }
 }
 
-void ActualGuitar::handleOctaveDown() {
+void ActualGuitarMapping::handleOctaveDown() {
     if (!guitarInput.getMinus() && !minusFlag) {
         return;
     }
@@ -116,7 +116,7 @@ void ActualGuitar::handleOctaveDown() {
     }
 }
 
-void ActualGuitar::updateSoundParameters() {
+void ActualGuitarMapping::updateSoundParameters() {
 	// Echo
 	dsp.setParamValue("/KISANA_5_STRINGS/GLOBAL/echo", 0.0);
 

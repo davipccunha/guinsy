@@ -2,7 +2,7 @@
 
 #include "ControllerMapping.h"
 
-class ActualGuitar : public ControllerMapping {
+class ActualGuitarMapping : public ControllerMapping {
 private:
     int currentOctave = 0; // This is not an absolute octave but rather a relative octave shift that will be applied to the final strings frequency
 
@@ -13,7 +13,7 @@ private:
     void updateSoundParameters();
 
 public:
-    ActualGuitar(GuitarInput& g, FaustGuitar& f)
+    ActualGuitarMapping(GuitarInput& g, FaustGuitar& f)
         : ControllerMapping(g, f)
     {}
 
