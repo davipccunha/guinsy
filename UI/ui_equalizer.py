@@ -1,4 +1,6 @@
-import sys  # <-- AJOUT pour forcer l'arrêt du programme
+import sys
+import os          # <-- AJOUT : Pour forcer la fermeture au niveau de l'OS (règle le problème Linux)
+import signal      # <-- AJOUT : Pour capter le Ctrl+C dans le terminal
 import mido
 import serial
 import serial.tools.list_ports
@@ -30,7 +32,6 @@ class TeensyControllerApp(ctk.CTk):
         self.labels_db = []
         
         # Données Visualizer (5 Boutons)
-        # Couleurs: Vert, Rouge, Jaune, Bleu, Orange
         self.btn_colors = ["#00FF00", "#FF0000", "#FFFF00", "#0088FF", "#FFA500"]
         self.bubbles = []
 
@@ -40,15 +41,29 @@ class TeensyControllerApp(ctk.CTk):
 
         # --- CONSTRUCTION UI ---
         self.setup_ui()
-        self.draw_curve() # Premier tracé
+        self.draw_curve()
 
         # --- THREAD SÉRIE ---
-        # Écoute la Teensy en arrière-plan pour récupérer les notes
         self.thread = threading.Thread(target=self.read_serial_loop, daemon=True)
         self.thread.start()
 
-        # Gestion fermeture propre
+        # --- GESTION FERMETURE (Croix et Terminal) ---
         self.protocol("WM_DELETE_WINDOW", self.on_closing)
+        
+        # Intercepte le Ctrl+C (SIGINT) du terminal
+        signal.signal(signal.SIGINT, self.handle_sigint)
+        
+        # Astuce : Force Tkinter à "respirer" toutes les 200ms pour qu'il puisse entendre le Ctrl+C
+        self.poll_signals()
+
+    def handle_sigint(self, sig, frame):
+        """Gère l'arrêt demandé depuis le terminal."""
+        print("\nFermeture demandée via le terminal...")
+        self.on_closing()
+
+    def poll_signals(self):
+        """Réveille brièvement l'interface pour permettre la détection du Ctrl+C."""
+        self.after(200, self.poll_signals)
 
     def setup_ui(self):
         # 1. HEADER
@@ -138,16 +153,11 @@ class TeensyControllerApp(ctk.CTk):
     # --- LOGIQUE MÉTIER ---
 
     def update_filter(self, idx, val):
-        # 1. Calcul dB
         db = round(((float(val) - 64) / 64) * 20.0, 1)
         self.gains[idx] = db
         self.labels_db[idx].configure(text=f"{db} dB")
-        
-        # 2. Envoi MIDI vers Teensy (CC 21 à 26)
         if self.midi_out:
             self.midi_out.send(mido.Message('control_change', control=21+idx, value=int(val)))
-            
-        # 3. Mise à jour graphique
         self.draw_curve()
 
     def update_master(self, val):
@@ -155,47 +165,39 @@ class TeensyControllerApp(ctk.CTk):
             self.midi_out.send(mido.Message('control_change', control=7, value=int(val)))
 
     def reset_filters(self):
-        for i in range(5): # Corrigé à 5 pour coller à ta modif
+        for i in range(5):
             self.sliders[i].set(64)
             self.update_filter(i, 64)
 
     def draw_curve(self):
-        # Simulation réponse EQ
         x = np.logspace(np.log10(20), np.log10(20000), 200)
         y = np.zeros_like(x)
         for i, f_c in enumerate(self.freqs_val):
-            # Formule approximative Bell Filter
             width = f_c / 1.2
             y += self.gains[i] * np.exp(-0.5 * ((x - f_c) / (width/2))**2)
-        
         self.line.set_data(x, y)
         self.canvas_plot.draw_idle()
 
     # --- GESTION DES NOTES (SÉRIE) ---
     def read_serial_loop(self):
-        """Lit le port série en boucle pour récupérer les notes envoyées par la Teensy"""
         while self.running:
             if self.serial_in and self.serial_in.is_open:
                 try:
                     if self.serial_in.in_waiting:
-                        # Lecture de la ligne envoyée par Teensy (ex: "N:5:Do Majeur")
                         line = self.serial_in.readline().decode('utf-8', errors='ignore').strip()
                         if line.startswith("N:"):
                             parts = line.split(":")
                             if len(parts) >= 3:
                                 mask = int(parts[1])
                                 chord = parts[2]
-                                # Mise à jour UI (Thread-safe via after ou direct customtkinter)
                                 self.update_bubbles(mask, chord)
                 except Exception as e:
                     print(f"Erreur Série: {e}")
             else:
-                # Si pas connecté, on attend un peu pour éviter de boucler à l'infini
                 threading.Event().wait(1.0)
 
     def update_bubbles(self, mask, chord_name):
         self.chord_label.configure(text=chord_name)
-        # Bitmask : Vert=1, Rouge=2, Jaune=4, Bleu=8, Orange=16
         for i in range(5):
             is_on = (mask >> i) & 1
             color = self.btn_colors[i] if is_on else "#333333"
@@ -214,10 +216,9 @@ class TeensyControllerApp(ctk.CTk):
 
     def connect_serial(self):
         try:
-            # Recherche auto port COM
             ports = serial.tools.list_ports.comports()
             t_port = next((p.device for p in ports if "Teensy" in p.description or "Serial" in p.description), None)
-            if not t_port and ports: t_port = ports[0].device # Fallback
+            if not t_port and ports: t_port = ports[0].device
 
             if t_port:
                 self.serial_in = serial.Serial(t_port, 9600, timeout=1)
@@ -227,11 +228,9 @@ class TeensyControllerApp(ctk.CTk):
         except Exception as e:
             print(f"Erreur Connexion Série: {e}")
 
-    # --- GESTION FERMETURE (MISE À JOUR) ---
     def on_closing(self):
         self.running = False
         
-        # 1. Fermer les ports de communication avec des try/except au cas où ils sont occupés
         if self.midi_out: 
             try: self.midi_out.close()
             except: pass
@@ -240,15 +239,18 @@ class TeensyControllerApp(ctk.CTk):
             try: self.serial_in.close()
             except: pass
             
-        # 2. Dire à Matplotlib de libérer la mémoire de sa fenêtre intégrée
         plt.close('all')
         
-        # 3. Arrêter la boucle d'événements de Tkinter et détruire l'interface
-        self.quit()
-        self.destroy()
-        
-        # 4. Tuer brutalement le processus (ce qui coupe instantanément le thread série)
-        sys.exit(0)
+        try:
+            self.quit()
+            self.destroy()
+        except:
+            pass
+            
+        # NOUVEAU : Remplace sys.exit(0)
+        # Tue le processus instantanément au niveau du système d'exploitation, 
+        # empêchant les threads bloqués (comme sous Linux) de maintenir le programme en vie.
+        os._exit(0)
 
 if __name__ == "__main__":
     app = TeensyControllerApp()
