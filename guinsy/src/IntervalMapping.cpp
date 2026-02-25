@@ -44,28 +44,54 @@ void IntervalMapping::play() {
     dsp.setParamValue("/KISANA_5_STRINGS/Corde_5/frequence", frequencies[4] * currentOctaveFactor);
 
     //Pinch
-    if (frequencies[0] != 1) {
-        dsp.setParamValue("/KISANA_5_STRINGS/Corde_1/pincer", 1.0);
-        delay(random(minimumStringGap, maximumStringGap));
-    }
+    if (guitarInput.getStrumDown()) {
+        if (frequencies[0] != 1) {
+            dsp.setParamValue("/KISANA_5_STRINGS/Corde_1/pincer", 1.0);
+            delay(random(minimumStringGap, maximumStringGap));
+        }
+        
+        if (frequencies[1] != 1) {
+            dsp.setParamValue("/KISANA_5_STRINGS/Corde_2/pincer", 1.0);
+            delay(random(minimumStringGap, maximumStringGap));
+        }
 
-    if (frequencies[1] != 1) {
-        dsp.setParamValue("/KISANA_5_STRINGS/Corde_2/pincer", 1.0);
-        delay(random(minimumStringGap, maximumStringGap));
-    }
-    
-    if (frequencies[2] != 1) {
-        dsp.setParamValue("/KISANA_5_STRINGS/Corde_3/pincer", 1.0);
-        delay(random(minimumStringGap, maximumStringGap));
-    }
-    
-    if (frequencies[3] != 1) {
-        dsp.setParamValue("/KISANA_5_STRINGS/Corde_4/pincer", 1.0);
-        delay(random(minimumStringGap, maximumStringGap));
-    }
-    
-    if (frequencies[4] != 1) {
-        dsp.setParamValue("/KISANA_5_STRINGS/Corde_5/pincer", 1.0);
+        if (frequencies[2] != 1) {
+            dsp.setParamValue("/KISANA_5_STRINGS/Corde_3/pincer", 1.0);
+            delay(random(minimumStringGap, maximumStringGap));
+        }
+
+        if (frequencies[3] != 1) {
+            dsp.setParamValue("/KISANA_5_STRINGS/Corde_4/pincer", 1.0);
+            delay(random(minimumStringGap, maximumStringGap));
+        }
+
+        if (frequencies[4] != 1) {
+            dsp.setParamValue("/KISANA_5_STRINGS/Corde_5/pincer", 1.0);
+        }
+    } else {
+        if (frequencies[4] != 1) {
+            dsp.setParamValue("/KISANA_5_STRINGS/Corde_5/pincer", 1.0);
+            delay(random(minimumStringGap, maximumStringGap));
+        }
+        
+        if (frequencies[3] != 1) {
+            dsp.setParamValue("/KISANA_5_STRINGS/Corde_4/pincer", 1.0);
+            delay(random(minimumStringGap, maximumStringGap));
+        }
+
+        if (frequencies[2] != 1) {
+            dsp.setParamValue("/KISANA_5_STRINGS/Corde_3/pincer", 1.0);
+            delay(random(minimumStringGap, maximumStringGap));
+        }
+
+        if (frequencies[1] != 1) {
+            dsp.setParamValue("/KISANA_5_STRINGS/Corde_2/pincer", 1.0);
+            delay(random(minimumStringGap, maximumStringGap));
+        }
+
+        if (frequencies[0] != 1) {
+            dsp.setParamValue("/KISANA_5_STRINGS/Corde_1/pincer", 1.0);
+        }
     }
 
     delay(10);
