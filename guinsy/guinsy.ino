@@ -63,7 +63,7 @@ void OnControlChange(byte channel, byte control, byte value) {
     
     // Filtres EQ (CC 21 à 26)
     if (control >= 21 && control <= 26) {
-        int band = control - 20; // 1 à 6
+        int band = control - 20; // 1 à 6c:\Users\simso\Documents\Gitting\guinsy\guinsy\src\IntervalMapping.cpp
         float db = ((valFloat - 64.0) / 64.0) * 20.0;
         String path = "/KISANA_5_STRINGS/EQ/b" + String(band);
         dsp.setParamValue(path.c_str(), db);

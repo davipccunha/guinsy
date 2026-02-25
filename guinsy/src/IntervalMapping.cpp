@@ -1,7 +1,7 @@
 #include "IntervalMapping.h"
 
 void IntervalMapping::play() {
-    int minimumStringGap = 10, maximumStringGap = 30;
+    int minimumStringGap = 25, maximumStringGap = 50;
     float frequencies[5];
     float rootFrequency = fundamentals[keyIndex];
 
