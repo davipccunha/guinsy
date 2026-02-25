@@ -8,8 +8,17 @@ GuitarInput guitarInput;
 FaustGuitar dsp;
 AudioOutputI2S out;
 AudioControlSGTL5000 audioShield;
-AudioConnection patchCord0(dsp, 0, out, 0);
-AudioConnection patchCord1(dsp, 0, out, 1);
+//AudioConnection patchCord0(dsp, 0, out, 0);
+//AudioConnection patchCord1(dsp, 0, out, 1);
+
+AudioOutputUSB usbOut;
+
+AudioConnection patchCord0(dsp, 0, usbOut, 0);
+AudioConnection patchCord1(dsp, 1, usbOut, 1);
+
+AudioConnection patchCord2(dsp, 0, out, 0);
+AudioConnection patchCord3(dsp, 1, out, 1);
+
 
 IntervalMapping controllerMapping(guitarInput, dsp);
 
