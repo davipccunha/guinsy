@@ -48,12 +48,6 @@ void initializeAudio() {
   audioShield.enable();
   audioShield.volume(0.25);
 }
- 
- 
-// Fonction de mapping pour convertir 0-127 en -20dB / +20dB
-float mapMIDItoDB(int value) {
-    return ((value - 64.0) / 64.0) * 20.0;
-}
 
 void OnControlChange(byte channel, byte control, byte value) {
     float valFloat = (float)value;
