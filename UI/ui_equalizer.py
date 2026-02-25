@@ -1,3 +1,4 @@
+import sys  # <-- AJOUT pour forcer l'arrêt du programme
 import mido
 import serial
 import serial.tools.list_ports
@@ -154,7 +155,7 @@ class TeensyControllerApp(ctk.CTk):
             self.midi_out.send(mido.Message('control_change', control=7, value=int(val)))
 
     def reset_filters(self):
-        for i in range(6):
+        for i in range(5): # Corrigé à 5 pour coller à ta modif
             self.sliders[i].set(64)
             self.update_filter(i, 64)
 
@@ -226,11 +227,28 @@ class TeensyControllerApp(ctk.CTk):
         except Exception as e:
             print(f"Erreur Connexion Série: {e}")
 
+    # --- GESTION FERMETURE (MISE À JOUR) ---
     def on_closing(self):
         self.running = False
-        if self.midi_out: self.midi_out.close()
-        if self.serial_in: self.serial_in.close()
+        
+        # 1. Fermer les ports de communication avec des try/except au cas où ils sont occupés
+        if self.midi_out: 
+            try: self.midi_out.close()
+            except: pass
+            
+        if self.serial_in: 
+            try: self.serial_in.close()
+            except: pass
+            
+        # 2. Dire à Matplotlib de libérer la mémoire de sa fenêtre intégrée
+        plt.close('all')
+        
+        # 3. Arrêter la boucle d'événements de Tkinter et détruire l'interface
+        self.quit()
         self.destroy()
+        
+        # 4. Tuer brutalement le processus (ce qui coupe instantanément le thread série)
+        sys.exit(0)
 
 if __name__ == "__main__":
     app = TeensyControllerApp()
