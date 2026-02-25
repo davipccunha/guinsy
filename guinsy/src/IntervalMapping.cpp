@@ -1,6 +1,7 @@
 #include "IntervalMapping.h"
 
 void IntervalMapping::play() {
+    int minimumStringGap = 10, maximumStringGap = 25;
     float frequencies[5];
     float rootFrequency = fundamentals[keyIndex];
 
@@ -46,15 +47,19 @@ void IntervalMapping::play() {
     if (frequencies[0] != 1) {
         dsp.setParamValue("/KISANA_5_STRINGS/Corde_1/pincer", 1.0);	
     }
+    delay(random(minimumStringGap, maximumStringGap));
     if (frequencies[1] != 1) {
         dsp.setParamValue("/KISANA_5_STRINGS/Corde_2/pincer", 1.0);
     }
+    delay(random(minimumStringGap, maximumStringGap));
     if (frequencies[2] != 1) {
         dsp.setParamValue("/KISANA_5_STRINGS/Corde_3/pincer", 1.0);
     }
+    delay(random(minimumStringGap, maximumStringGap));
     if (frequencies[3] != 1) {
         dsp.setParamValue("/KISANA_5_STRINGS/Corde_4/pincer", 1.0);
     }
+    delay(random(minimumStringGap, maximumStringGap));
     if (frequencies[4] != 1) {
         dsp.setParamValue("/KISANA_5_STRINGS/Corde_5/pincer", 1.0);
     }

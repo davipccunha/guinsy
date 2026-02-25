@@ -111,6 +111,7 @@ byte etatActuel = 0;
   envoyerEtat(etatActuel, controllerMapping.getReadableKey());
 }
 
+// Debug function
 void printGuitarInput() {
   if (guitarInput.getGreen()) Serial.print("G ");
   if (guitarInput.getRed()) Serial.print("R ");
